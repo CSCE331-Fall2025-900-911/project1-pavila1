@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terminal Access</title>
-    <!-- Imports the Fira Code font for the terminal aesthetic. -->
+    <!-- The one font to rule them all. Or at least this page. -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* --- COLOR & FONT VARIABLES --- */
-        /* Defines the color theme and fonts for the page. */
+        /* --- THE ALMIGHTY COLOR PALETTE --- */
+        /* This is the master control panel for all colors. Tweak these values to change the whole vibe. */
+        /* You'll probably want to edit this. */
         :root {
             --bg-main: #f8f9fc;
             --terminal-bg: rgba(255, 255, 255, 0.6);
@@ -27,8 +28,9 @@
             --input-bg: rgba(253, 191, 211, 0.3);
         }
 
-        /* --- GENERAL PAGE STYLES --- */
-        /* Basic styles for the body and scrollbar. */
+        /* --- GENERAL PAGE VIBES --- */
+        /* Boring stuff that makes the page work. Also hides the pesky scrollbar. */
+        /* You might want to edit the background color here. */
         body {
             font-family: 'Fira Code', monospace;
             background-color: var(--bg-main);
@@ -47,8 +49,9 @@
             display: none;
         }
 
-        /* --- TERMINAL WINDOW --- */
-        /* Styles for the main terminal container. */
+        /* --- THE TERMINAL'S HOUSE --- */
+        /* Styles for the box where the magic happens. It's got a nice blur effect. Fancy! */
+        /* You'll probably want to edit the size (max-width, height) here. */
         #terminal-container {
             width: 100%;
             max-width: 56rem;
@@ -64,8 +67,9 @@
             transition: opacity 1s ease-in-out;
         }
 
-        /* --- TERMINAL HEADER --- */
-        /* Styles for the top bar of the terminal. */
+        /* --- TERMINAL TOP BAR --- */
+        /* Just like a real window, but you can't throw it. */
+        /* You might want to edit the header-bg color. */
         .terminal-header {
             background-color: var(--header-bg);
             padding: 0.5rem;
@@ -105,8 +109,8 @@
             color: var(--text-purple);
         }
         
-        /* --- TERMINAL BODY --- */
-        /* Styles for the content area of the terminal. */
+        /* --- INSIDE THE TERMINAL --- */
+        /* Where all the text and commands live. */
         #terminal {
             padding: 1rem;
             overflow-y: auto;
@@ -121,8 +125,9 @@
             margin-top: 1rem;
         }
         
-        /* --- INITIAL LOADING ANIMATION --- */
-        /* Styles for the boot sequence text and progress bar. */
+        /* --- FAKE HACKER LOADING SCREEN --- */
+        /* Makes it look like we're doing something really important. */
+        /* You'll probably want to edit the progress bar colors. */
         #loading-screen {
             font-size: 0.875rem;
         }
@@ -147,8 +152,9 @@
             margin-top: 0.25rem;
         }
         
-        /* --- COMMAND INPUT --- */
-        /* Styles for the user input area. */
+        /* --- THE ALL-IMPORTANT INPUT BOX --- */
+        /* Where users type their hopes, dreams, and 'help' commands. */
+        /* You might want to edit the input-bg color. */
         .input-wrapper {
             display: flex;
             align-items: center;
@@ -170,8 +176,9 @@
             font-size: 1rem;
         }
         
-        /* --- BLINKING CURSOR --- */
-        /* Animation for the typing cursor. */
+        /* --- THE BLINKING CURSOR OF DESTINY --- */
+        /* It blinks, therefore I am. Hypnotic, isn't it? */
+        /* You can edit the animation speed or color here. */
         .cursor {
             width: 10px;
             height: 1.2rem;
@@ -183,8 +190,9 @@
             50% { background-color: transparent; }
         }
         
-        /* --- MAIN PAGE --- */
-        /* Full-screen background and content area. */
+        /* --- THE MAIN EVENT: YOUR PAGE --- */
+        /* This is what they're all here to see. The background is the star. */
+        /* You'll DEFINITELY want to edit the background-image URL here. */
         #main-content {
             position: fixed;
             top: 0;
@@ -197,18 +205,214 @@
             background-position: center;
             background-repeat: no-repeat;
             transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* --- RESTART BUTTON --- */
-        /* Styles for the button on the main page. */
+        /* --- THE ICON ARMY --- */
+        /* Your legion of stylish, clickable icons. They crave attention. */
+        /* You'll probably want to edit their size, shape, and colors. */
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 2rem;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .icon-link {
+            background: rgba(253, 191, 211, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid rgba(253, 191, 211, 0.2);
+            padding: 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-size: 0.875rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 120px;
+            height: 120px;
+            text-align: center;
+        }
+        .icon-link:hover {
+            background: rgba(253, 191, 211, 0.3);
+            transform: translateY(-5px);
+        }
+        .icon-link svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+
+        /* --- NEW: THE "ABOUT ME" DRAGGABLE WINDOW --- */
+        /* The container that holds our fancy new window. */
+        #about-me-page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex; /* Changed for positioning the window */
+            align-items: center;
+            justify-content: center;
+            pointer-events: none; /* Allows clicks to pass through the overlay */
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+        }
+        .window-pane {
+            /* Initial size and position. JavaScript will take it from here. */
+            /* You can edit the starting width and height. */
+            width: 700px;
+            height: 550px;
+            min-width: 350px; /* So you don't resize it into oblivion */
+            min-height: 200px;
+            position: absolute; /* Crucial for dragging */
+            /* MODIFICATION: Changed background to light white */
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 0.75rem;
+            border: 1px solid rgba(220, 220, 220, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            display: flex;
+            flex-direction: column;
+            resize: both; /* Our magic wand for resizing! */
+            overflow: hidden; /* Important for the resizer to work */
+            pointer-events: auto; /* The window itself can be interacted with */
+        }
+        .window-pane.maximized {
+            width: 100% !important;
+            height: 100% !important;
+            top: 0 !important;
+            left: 0 !important;
+            resize: none;
+            border-radius: 0;
+        }
+        .window-header {
+            width: 100%;
+            background: rgba(244, 114, 182, 0.5);
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            cursor: move; /* Your mouse pointer will thank you. */
+            flex-shrink: 0;
+        }
+        .window-title {
+            font-weight: bold;
+        }
+        .window-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .window-control-btn {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .minimize { background-color: #fbd38d; }
+        .maximize { background-color: #81e6d9; }
+        .close { background-color: #f56565; }
+
+        .window-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            flex-grow: 1;
+            /* MODIFICATION: Changed text color for readability */
+            color: var(--text-main);
+        }
+        .window-body h2 {
+            font-size: 1.5rem;
+            /* MODIFICATION: Changed heading color */
+            color: var(--text-purple);
+            border-bottom: 2px solid var(--text-purple);
+            padding-bottom: 0.5rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+        .window-body h2:first-child {
+            margin-top: 0;
+        }
+        .window-body p, .window-body ul {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin: 0 0 1rem 0;
+        }
+        
+        /* --- NEW STYLES for "About Me" Layout --- */
+        /* A fancy two-column layout. Like a newspaper, but cooler. */
+        .about-me-layout {
+            display: flex;
+            align-items: flex-start; /* Aligns items to the top */
+            gap: 1.5rem; /* Space between photo and text */
+        }
+        .photo-column {
+            flex-shrink: 0; /* Prevents the photo column from shrinking */
+            display: flex;
+            justify-content: center;
+        }
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Makes it circular */
+            object-fit: cover; /* Prevents the image from stretching */
+            border: 3px solid rgba(244, 114, 182, 0.5);
+        }
+        .text-column {
+            flex-grow: 1; /* Allows the text column to take up the remaining space */
+        }
+
+
+        /* --- THE "NOTHING TO SEE HERE" PAGE --- */
+        /* Our fancy "Coming Soon" page. It's mysterious. */
+        .page-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+        }
+        #coming-soon-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        #coming-soon-page p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* --- THE ESCAPE HATCH --- */
+        /* The trusty Restart button for when you want to do it all over again. */
+        /* You'll probably want to edit the button colors. */
         .button-container {
             position: absolute;
             bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
+            z-index: 100; /* So it's above the maximized window */
         }
-        .restart-button {
-            background-color: rgba(207, 230, 231, 0.7);
+        .restart-button, .back-button { /* Shared styles for buttons */
+            background-color: rgba(244, 114, 182, 0.7);
             color: white;
             font-family: 'Fira Code', monospace;
             font-weight: bold;
@@ -221,12 +425,13 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
         }
-        .restart-button:hover {
-            background-color: rgba(147, 217, 219, 0.9);
+        .restart-button:hover, .back-button:hover {
+            background-color: rgba(236, 72, 153, 0.9);
         }
 
-        /* --- GIF LOADING SCREEN --- */
-        /* Styles for the full-screen loading GIF overlay. */
+        /* --- THE DRAMATIC ENTRANCE GIF --- */
+        /* A brief intermission before the main show. */
+        /* You'll probably want to edit the GIF's size. */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -246,8 +451,8 @@
             height: 150px;
         }
 
-        /* --- UTILITY CLASSES --- */
-        /* Helper classes for managing visibility and opacity. */
+        /* --- BORING HELPER CLASSES --- */
+        /* Don't touch these unless you know what you're doing. Or do, I'm not your boss. */
         .hidden {
             display: none !important;
         }
@@ -268,7 +473,7 @@
 <body>
 
     <div id="terminal-container">
-        <!-- Header bar of the terminal window. -->
+        <!-- The pretty header of our terminal. -->
         <div class="terminal-header">
             <div class="header-title">
                 <div class="header-dots">
@@ -276,7 +481,7 @@
                     <div class="dot" style="background-color: var(--dot-pink-1);"></div>
                     <div class="dot" style="background-color: var(--dot-pink-2);"></div>
                 </div>
-                <!-- SVG icon for the header. -->
+                <!-- A heart, because we love our users. -->
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                 </svg>
@@ -285,11 +490,11 @@
             <span class="user-info">user@portfolio</span>
         </div>
         
-        <!-- Main content area of the terminal. -->
+        <!-- This is where the text appears. Clicka-clacka. -->
         <div id="terminal" onclick="document.getElementById('command-input')?.focus()">
             <h1 class="welcome-title">Welcome to my website</h1>
             
-            <!-- Initial loading animation section. -->
+            <!-- The fake loading animation lives here. -->
             <div id="loading-screen">
                 <div id="loading-log"></div>
                 <div class="progress-bar-container">
@@ -298,7 +503,7 @@
                 <div id="progress-text"></div>
             </div>
 
-            <!-- User input section, hidden until loading is complete. -->
+            <!-- The part where the user can actually type stuff. -->
             <div id="interactive-section" class="hidden">
                  <div id="output"></div>
                 <div class="input-wrapper">
@@ -310,9 +515,104 @@
         </div>
     </div>
 
-    <!-- Main page content, hidden until 'enter' command is used. -->
+    <!-- The promised land. The main page content. -->
     <main id="main-content" class="hidden">
-        <!-- Container for the restart button. -->
+        
+        <!-- The icon grid. A portal to other dimensions (or pages). -->
+        <div class="icon-grid">
+            
+            <!-- Each icon is a link. Change href="javascript:void(0)" to your actual URL if you want it to go somewhere else. -->
+            <!-- You'll probably want to edit these. -->
+            
+            <a href="javascript:void(0)" class="icon-link page-link" data-page-title="Projects">
+                <svg viewBox="0 0 24 24"><path d="M10 4H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8c0-1.11-.9-2-2-2h-8l-2-2z"></path></svg>
+                <span>Projects</span>
+            </a>
+            
+            <a href="javascript:void(0)" class="icon-link page-link" data-page-title="About Me">
+                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+                <span>About Me</span>
+            </a>
+            
+            <a href="javascript:void(0)" class="icon-link page-link" data-page-title="Resume">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM16 18H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"></path></svg>
+                <span>Resume</span>
+            </a>
+            
+            <a href="javascript:void(0)" class="icon-link page-link" data-page-title="GitHub">
+                <svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.3-.6-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.3 2.8.1 3.1.8.8 1.3 1.9 1.3 3.1 0 4.7-2.8 5.7-5.5 6 .4.3.8.9.8 1.8v2.6c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"></path></svg>
+                <span>GitHub</span>
+            </a>
+            
+            <a href="javascript:void(0)" class="icon-link page-link" data-page-title="Contact Me">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+                <span>Contact Me</span>
+            </a>
+            
+            <a href="javascript:void(0)" class="icon-link page-link" data-page-title="LinkedIn">
+                <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-7 8.3h-2.1V17H7.2V9.3h2.7v1.1c.4-.7 1.3-1.2 2.5-1.2 2.7 0 3.2 1.8 3.2 4.1V17h-2.7v-4.6c0-1.1-.4-1.8-1.4-1.8-1.1 0-1.6.7-1.6 1.8zM5.5 7.4A1.4 1.4 0 1 0 4 6a1.4 1.4 0 0 0 1.5 1.4z"></path></svg>
+                <span>LinkedIn</span>
+            </a>
+        </div>
+        
+        <!-- NEW: The "About Me" page is now a draggable window! -->
+        <div id="about-me-page" class="hidden">
+             <div class="window-pane" id="about-me-window">
+                <div class="window-header" id="about-me-header">
+                    <span class="window-title">About Me</span>
+                    <div class="window-controls">
+                        <div class="window-control-btn minimize" id="about-me-minimize"></div>
+                        <div class="window-control-btn maximize" id="about-me-maximize"></div>
+                        <div class="window-control-btn close" id="about-me-close"></div>
+                    </div>
+                </div>
+                <div class="window-body" id="about-me-body">
+                    <div class="about-me-layout">
+                        <div class="photo-column">
+                            <!-- Time for your close-up! Change the src to a URL of your photo. -->
+                            <!-- You'll probably want to edit this. -->
+                            <img src="https://mail.google.com/mail/u/0?ui=2&ik=5e475e6db2&attid=0.1&permmsgid=msg-a:r2567425042447243814&th=199359d36492148c&view=fimg&fur=ip&permmsgid=msg-a:r2567425042447243814&sz=s0-l75-ft&attbid=ANGjdJ-dVkNGfWYxhnto0xo6zW1KyUfgdtAi5BRoYQM_DOS9z_EID0BaQ3MfHEJGYPhbHxMTvPlyqFxIHnj5dOW5DYMELNiPWRabF0ZW_fznKWgmLtuA0I-308NFZqc&disp=emb&realattid=ii_199359d2431a19191e61&zw" alt="My Photo" class="profile-photo">
+                        </div>
+                        <div class="text-column">
+                            <!-- Your info lives here. -->
+                            <h2>About Me</h2>
+                            <p>My name is Paola Avila, and I am a Computer Engineering student from Dallas, Texas, driven by a passion for the evolution of hardware in our society. Technology is constantly reshaping our world, and I am determined to be an active contributor to that change. As a proud first-generation Latina, I am on track to become the first computer engineer in my family, a milestone that fuels my dedication. This journey stems from a lifelong fascination with computers, which has now blossomed into a deeper, more nuanced understanding of the intricate systems that power our modern lives.</p>
+
+                            <h2>Why Computer Engineering?</h2>
+                            <p>My path to Computer Engineering was shaped by a dual passion for both software and hardware. While I was initially captivated by coding and the logic of developing programs, my interests expanded to include the physical world of electrical concepts. In high school, I fully immersed myself in electrical robotics, which provided the perfect environment to merge these two worlds. This experience was critical for honing my skills, challenging me to develop complex algorithms while simultaneously applying critical thinking to solve problems in electrical fields. For me, Computer Engineering is the ideal synthesis of these interests, allowing me to build the physical systems and write the code that brings them to life.</p>
+
+                            <!-- NEW SECTIONS ADDED BELOW -->
+                            <h2>My Engineering Philosophy</h2>
+                            <p>For me, great engineering isn't just about creating the most powerful hardware; it's about designing technology that is accessible, efficient, and built to last. I believe in a 'first principles' approach to problem-solving—breaking a complex challenge down to its fundamental truths before building a solution. This was a lesson I learned firsthand during my time in robotics, where the most elegant and effective solutions were often the simplest and most robust.</p>
+
+                            <h2>Key Influences and Inspirations</h2>
+                            <p>My passion for hardware was significantly influenced by the development of embedded systems in everyday devices. Learning how engineers could pack so much computational power into a tiny, energy-efficient chip opened my eyes to a new world of possibilities. It showed me the power of combining visionary thinking with meticulous execution. This inspiration was further solidified by my coursework with on microprocessor architecture, which crystallized my desire to work at the intersection of hardware design and low-level software.</p>
+
+                            <h2>Collaboration and Working Style</h2>
+                            <p>In collaborative settings, I naturally gravitate towards the role of the systems integrator. I enjoy taking different components—whether they're lines of code from one teammate or a circuit designed by another—and figuring out how to make them work together seamlessly. My experience in robotics taught me that clear, consistent communication and a shared respect for each member's expertise are the bedrock of any successful project. I thrive in an environment where ideas can be challenged constructively to achieve the best possible outcome.</p>
+                            
+                            <h2>Hobbies and Interests</h2>
+                            <p>I do more than just work—I have hobbies that keep me balanced and inspired!</p>
+                            <ul>
+                                <li><b>Running:</b> Exploring new trails and pushing my limits, one step at a time.</li>
+                                <li><b>Gardening:</b> Cultivating a small garden, which teaches me patience and the rewards of careful planning.</li>
+                                <li><b>Animation:</b> I'm really into animation and appreciate the artistry behind it.</li>
+                                <li><b>Gaming:</b> Unwinding with strategic games that challenge my problem-solving skills in a fun way.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The "Coming Soon" page still hangs out here. -->
+        <div id="coming-soon-page" class="page-overlay hidden">
+            <h1 id="coming-soon-title"></h1>
+            <p>This page is under construction.</p>
+            <button id="coming-soon-back-button" class="back-button">Go Back</button>
+        </div>
+
+        <!-- The big red button, but it's pink. Don't press it. Or do. -->
         <div class="button-container">
              <button onclick="location.reload()" class="restart-button">
                 Restart Terminal
@@ -320,15 +620,16 @@
         </div>
     </main>
 
-    <!-- Full-screen overlay for the loading GIF. -->
+    <!-- The magical loading GIF screen. Poof! -->
     <div id="loading-gif-container" class="hidden loading-overlay">
-        <!-- You can change the 'src' below to any GIF URL. -->
+        <!-- Change the 'src' to your favorite GIF. The power is yours. -->
+        <!-- You'll probably want to edit this. -->
         <img src="https://media0.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3Y3czY2NteG5oNGY5a3hhZGVnZ2FrMTBnNm1rdnVkbmVxMzdpNHQ1ZCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/WuyE7QLUATclSwHh3u/giphy.webp" alt="Loading..." class="loading-gif">
     </div>
 
     <script>
-        // --- DOM ELEMENT SELECTORS ---
-        // Connects JavaScript variables to HTML elements.
+        // --- THE BRAIN OF THE OPERATION ---
+        // Grab all the important bits from the HTML so we can play with them.
         const terminal = document.getElementById('terminal');
         const loadingScreen = document.getElementById('loading-screen');
         const loadingLog = document.getElementById('loading-log');
@@ -340,9 +641,27 @@
         const terminalContainer = document.getElementById('terminal-container');
         const mainContent = document.getElementById('main-content');
         const loadingGifContainer = document.getElementById('loading-gif-container');
+        const iconGrid = document.querySelector('.icon-grid');
+        // Page Navigation Elements
+        const comingSoonPage = document.getElementById('coming-soon-page');
+        const comingSoonTitle = document.getElementById('coming-soon-title');
+        const comingSoonBackButton = document.getElementById('coming-soon-back-button');
+        const aboutMePage = document.getElementById('about-me-page');
+        const pageLinks = document.querySelectorAll('.page-link');
+
+        // NEW: "About Me" Window Elements
+        const aboutMeWindow = document.getElementById('about-me-window');
+        const aboutMeHeader = document.getElementById('about-me-header');
+        const aboutMeBody = document.getElementById('about-me-body');
+        const minimizeBtn = document.getElementById('about-me-minimize');
+        const maximizeBtn = document.getElementById('about-me-maximize');
+        const closeBtn = document.getElementById('about-me-close');
+
+
         
-        // --- INITIAL LOADING SEQUENCE ---
-        // Defines the text and timing for the boot animation.
+        // --- THE FAKE LOADING TEXT ---
+        // An array of dramatic things to say while "loading".
+        // You'll probably want to edit this to be more epic.
         const loadingSteps = [
             { text: "Initializing system...", delay: 200 },
             { text: "Connecting to mainframe...", delay: 300 },
@@ -351,8 +670,8 @@
             { text: "Boot sequence complete.", delay: 150 },
         ];
 
-        // --- FINISH LOADING ---
-        // Switches from the loading animation to the interactive prompt.
+        // --- LOADING FINALE ---
+        // What happens when the fake loading is done. It reveals the prompt!
         function finishLoading() {
             loadingScreen.classList.add('hidden');
             interactiveSection.classList.remove('hidden');
@@ -362,8 +681,8 @@
             commandInput.focus();
         }
 
-        // --- RUN LOADING ANIMATION ---
-        // Executes the step-by-step loading sequence.
+        // --- RUN THE LOADING SHOW ---
+        // This function puts on the whole loading performance, step by step.
         function runLoadingSequence(step = 0) {
             if (step >= loadingSteps.length) {
                 setTimeout(finishLoading, 300);
@@ -386,8 +705,9 @@
             }, currentStep.delay);
         }
 
-        // --- COMMAND DICTIONARY ---
-        // Defines all available terminal commands and their actions.
+        // --- THE BIG BOOK OF COMMANDS ---
+        // This is where we teach the terminal what to do. A digital dog trainer, if you will.
+        // You'll probably want to edit this to add your own commands!
         const commands = {
             'help': `Available commands: <span class="text-pink">help</span>, <span class="text-pink">about</span>, <span class="text-pink">clear</span>, <span class="text-pink">enter</span>`,
             'about': 'This terminal is a gateway to my personal space on the web. Built with pure HTML, CSS, and JS.',
@@ -403,6 +723,8 @@
                     loadingGifContainer.classList.remove('hidden');
                     setTimeout(() => loadingGifContainer.classList.add('opacity-100'), 10);
 
+                    // The suspense... how long should the GIF play?
+                    // You'll probably want to edit this timeout (3000ms = 3s).
                     setTimeout(() => {
                         loadingGifContainer.classList.remove('opacity-100');
                         
@@ -420,8 +742,8 @@
             }
         };
 
-        // --- EVENT LISTENER: USER INPUT ---
-        // Listens for the 'Enter' key to process commands.
+        // --- HEY, LISTEN! (FOR THE 'ENTER' KEY) ---
+        // This guy just waits for the user to press 'Enter' and then springs into action.
         commandInput.addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
                 const command = commandInput.value.trim().toLowerCase();
@@ -434,15 +756,15 @@
             }
         });
 
-        // --- COMMAND HANDLER ---
-        // Processes the user's command and displays the output.
+        // --- THE COMMAND INTERPRETER ---
+        // Takes the user's command and figures out what to do with it. Smart little fella.
         function handleCommand(command) {
             const response = document.createElement('div');
             if (commands[command]) {
                 const result = commands[command];
                 response.innerHTML = (typeof result === 'function') ? result() : result;
             } else if (command === '') {
-                return;
+                return; // Do nothing if they just press enter.
             } else {
                 response.innerHTML = `Command not found: <span class="text-error">${command}</span>. Type 'help' for commands.`;
             }
@@ -451,11 +773,102 @@
             }
         }
 
-        // --- INITIALIZE ---
-        // Starts the loading sequence when the page is fully loaded.
+        // --- PAGE NAVIGATION WIZARDRY ---
+        // Hides the icon grid and shows a specific page overlay.
+        function showPage(pageElement) {
+            iconGrid.classList.add('opacity-0');
+            setTimeout(() => {
+                iconGrid.style.display = 'none';
+                pageElement.classList.remove('hidden');
+                setTimeout(() => { pageElement.style.opacity = '1'; }, 10);
+            }, 500);
+        }
+
+        // Hides a specific page overlay and shows the icon grid again.
+        function hidePage(pageElement) {
+            pageElement.style.opacity = '0';
+            setTimeout(() => {
+                pageElement.classList.add('hidden');
+                iconGrid.style.display = 'grid';
+                setTimeout(() => { iconGrid.classList.remove('opacity-0'); }, 10);
+            }, 500);
+        }
+
+        // Tell every icon link to listen for clicks.
+        pageLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const pageTitle = this.dataset.pageTitle;
+                
+                if (pageTitle === 'About Me') {
+                    showPage(aboutMePage);
+                } else {
+                    comingSoonTitle.textContent = `${pageTitle} - Coming Soon`;
+                    showPage(comingSoonPage);
+                }
+            });
+        });
+        
+        // Listen to the "Coming Soon" back button.
+        comingSoonBackButton.addEventListener('click', () => hidePage(comingSoonPage));
+
+        // --- NEW: WINDOWS 95 MODE ACTIVATED ---
+        // Logic for dragging, resizing, and controlling the "About Me" window.
+
+        // Dragging Logic
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        aboutMeHeader.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            // Calculate where the mouse is inside the header
+            offsetX = e.clientX - aboutMeWindow.offsetLeft;
+            offsetY = e.clientY - aboutMeWindow.offsetTop;
+            
+            // Don't select text while dragging
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                // Move the window to the new mouse position
+                aboutMeWindow.style.left = `${e.clientX - offsetX}px`;
+                aboutMeWindow.style.top = `${e.clientY - offsetY}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Window Controls Logic
+        closeBtn.addEventListener('click', () => hidePage(aboutMePage));
+
+        maximizeBtn.addEventListener('click', () => {
+            aboutMeWindow.classList.toggle('maximized');
+        });
+        
+        minimizeBtn.addEventListener('click', () => {
+            aboutMeBody.style.display = aboutMeBody.style.display === 'none' ? 'block' : 'none';
+            if(aboutMeBody.style.display === 'none') {
+                aboutMeWindow.style.height = '40px'; // Just the header height
+                aboutMeWindow.style.resize = 'none';
+            } else {
+                aboutMeWindow.style.height = '550px'; // Restore original height
+                aboutMeWindow.style.resize = 'both';
+            }
+        });
+
+
+        // --- LET THERE BE LIGHT! ---
+        // This kicks everything off when the page is ready.
         window.onload = () => {
             runLoadingSequence();
         };
     </script>
 </body>
 </html>
+
+
+</html>
+
