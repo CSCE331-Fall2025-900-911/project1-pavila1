@@ -1,46 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Centered Heading</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Access</title>
+    <!-- Imports the Fira Code font for the terminal aesthetic. -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-      body {
-        text-align: center;
-        font-family: Arial, sans-serif;
-      }
+        /* --- COLOR & FONT VARIABLES --- */
+        /* Defines the color theme and fonts for the page. */
+        :root {
+            --bg-main: #f8f9fc;
+            --terminal-bg: rgba(255, 255, 255, 0.6);
+            --header-bg: #fdeef5;
+            --text-main: #4a5568;
+            --text-purple: #a78bfa;
+            --text-pink: #f472b6;
+            --text-error: #ef4444;
+            --shadow-color: rgba(244, 114, 182, 0.2);
+            --border-color: rgba(253, 191, 211, 0.5);
+            --dot-purple: #d8b4fe;
+            --dot-pink-1: #f9a8d4;
+            --dot-pink-2: #fbcfe8;
+            --progress-bar-bg: #d8b4fe;
+            --progress-container-bg: rgba(253, 191, 211, 0.3);
+            --input-bg: rgba(253, 191, 211, 0.3);
+        }
 
-      h1 {
-        color: rgb(225, 146, 146);
-      }
+        /* --- GENERAL PAGE STYLES --- */
+        /* Basic styles for the body and scrollbar. */
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            margin: 0;
+            padding: 1rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
 
-      /* Style for the intro heading */
-      .intro {
-        font-family: "Comic Sans MS", cursive, sans-serif;
-        font-size: 24px;
-        color: rgb(242, 196, 237);
-      }
+        /* --- TERMINAL WINDOW --- */
+        /* Styles for the main terminal container. */
+        #terminal-container {
+            width: 100%;
+            max-width: 56rem;
+            height: 80vh;
+            background-color: var(--terminal-bg);
+            border-radius: 0.5rem;
+            box-shadow: 0 25px 50px -12px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            transition: opacity 1s ease-in-out;
+        }
 
-      img.cool-gif {
-        width: 200px;
-        margin-bottom: 20px;
-      }
+        /* --- TERMINAL HEADER --- */
+        /* Styles for the top bar of the terminal. */
+        .terminal-header {
+            background-color: var(--header-bg);
+            padding: 0.5rem;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 9999px;
+        }
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-left: 0.75rem;
+        }
+        .header-title svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            color: var(--text-pink);
+        }
+        .header-title span {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        .user-info {
+            font-size: 0.875rem;
+            color: var(--text-purple);
+        }
+        
+        /* --- TERMINAL BODY --- */
+        /* Styles for the content area of the terminal. */
+        #terminal {
+            padding: 1rem;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        .welcome-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--text-purple);
+            text-align: center;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+        
+        /* --- INITIAL LOADING ANIMATION --- */
+        /* Styles for the boot sequence text and progress bar. */
+        #loading-screen {
+            font-size: 0.875rem;
+        }
+        .progress-bar-container {
+            width: 100%;
+            background-color: var(--progress-container-bg);
+            border-radius: 9999px;
+            height: 0.375rem;
+            margin-top: 0.75rem;
+        }
+        #progress-bar {
+            background-color: var(--progress-bar-bg);
+            height: 100%;
+            border-radius: 9999px;
+            width: 0%;
+            transition: width 0.3s ease-in-out;
+        }
+        #progress-text {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            text-align: right;
+            margin-top: 0.25rem;
+        }
+        
+        /* --- COMMAND INPUT --- */
+        /* Styles for the user input area. */
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+            background-color: var(--input-bg);
+            border-radius: 0.375rem;
+            padding: 0.5rem;
+        }
+        .prompt {
+            color: var(--text-purple);
+        }
+        #command-input {
+            background-color: transparent;
+            border: none;
+            color: var(--text-main);
+            width: 100%;
+            outline: none;
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+        }
+        
+        /* --- BLINKING CURSOR --- */
+        /* Animation for the typing cursor. */
+        .cursor {
+            width: 10px;
+            height: 1.2rem;
+            background-color: var(--text-pink);
+            margin-right: 5px;
+            animation: blink 1s steps(1) infinite;
+        }
+        @keyframes blink {
+            50% { background-color: transparent; }
+        }
+        
+        /* --- MAIN PAGE --- */
+        /* Full-screen background and content area. */
+        #main-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black; 
+            background-image: url('https://i.pinimg.com/originals/09/e3/99/09e399642d195c7ad94ff2b8dc37f877.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* --- RESTART BUTTON --- */
+        /* Styles for the button on the main page. */
+        .button-container {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .restart-button {
+            background-color: rgba(207, 230, 231, 0.7);
+            color: white;
+            font-family: 'Fira Code', monospace;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: background-color 0.3s;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .restart-button:hover {
+            background-color: rgba(147, 217, 219, 0.9);
+        }
+
+        /* --- GIF LOADING SCREEN --- */
+        /* Styles for the full-screen loading GIF overlay. */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .loading-gif {
+            width: 150px; 
+            height: 150px;
+        }
+
+        /* --- UTILITY CLASSES --- */
+        /* Helper classes for managing visibility and opacity. */
+        .hidden {
+            display: none !important;
+        }
+        .opacity-0 {
+            opacity: 0;
+        }
+        .opacity-100 {
+            opacity: 1;
+        }
+        .text-pink {
+            color: var(--text-pink);
+        }
+        .text-error {
+            color: var(--text-error);
+        }
     </style>
-  </head>
-  <body>
-    <!-- Cool GIF -->
-    <img
-      src="https://i.pinimg.com/originals/73/8c/f0/738cf0892604cbbdb9889f13b7b1f31f.gif"
-      alt="Cool GIF"
-      class="cool-gif"
-    />
+</head>
+<body>
 
-    <h1>Howdy !!! Welcome to my page</h1>
+    <div id="terminal-container">
+        <!-- Header bar of the terminal window. -->
+        <div class="terminal-header">
+            <div class="header-title">
+                <div class="header-dots">
+                    <div class="dot" style="background-color: var(--dot-purple);"></div>
+                    <div class="dot" style="background-color: var(--dot-pink-1);"></div>
+                    <div class="dot" style="background-color: var(--dot-pink-2);"></div>
+                </div>
+                <!-- SVG icon for the header. -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <span>My Website</span>
+            </div>
+            <span class="user-info">user@portfolio</span>
+        </div>
+        
+        <!-- Main content area of the terminal. -->
+        <div id="terminal" onclick="document.getElementById('command-input')?.focus()">
+            <h1 class="welcome-title">Welcome to my website</h1>
+            
+            <!-- Initial loading animation section. -->
+            <div id="loading-screen">
+                <div id="loading-log"></div>
+                <div class="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+                <div id="progress-text"></div>
+            </div>
 
-    <!-- Intro with new style -->
-    <h1 class="intro">
-      Hiiii my name is Paola Avila and I really like matcha and more stuff and watching lots of
-      awesome shows. changing something again 
-    </h1>
-  </body>
+            <!-- User input section, hidden until loading is complete. -->
+            <div id="interactive-section" class="hidden">
+                 <div id="output"></div>
+                <div class="input-wrapper">
+                    <span class="prompt">&gt;&nbsp;</span>
+                    <div class="cursor"></div>
+                    <input type="text" id="command-input" autocomplete="off">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main page content, hidden until 'enter' command is used. -->
+    <main id="main-content" class="hidden">
+        <!-- Container for the restart button. -->
+        <div class="button-container">
+             <button onclick="location.reload()" class="restart-button">
+                Restart Terminal
+            </button>
+        </div>
+    </main>
+
+    <!-- Full-screen overlay for the loading GIF. -->
+    <div id="loading-gif-container" class="hidden loading-overlay">
+        <!-- You can change the 'src' below to any GIF URL. -->
+        <img src="https://media0.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3Y3czY2NteG5oNGY5a3hhZGVnZ2FrMTBnNm1rdnVkbmVxMzdpNHQ1ZCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/WuyE7QLUATclSwHh3u/giphy.webp" alt="Loading..." class="loading-gif">
+    </div>
+
+    <script>
+        // --- DOM ELEMENT SELECTORS ---
+        // Connects JavaScript variables to HTML elements.
+        const terminal = document.getElementById('terminal');
+        const loadingScreen = document.getElementById('loading-screen');
+        const loadingLog = document.getElementById('loading-log');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const interactiveSection = document.getElementById('interactive-section');
+        const outputDiv = document.getElementById('output');
+        const commandInput = document.getElementById('command-input');
+        const terminalContainer = document.getElementById('terminal-container');
+        const mainContent = document.getElementById('main-content');
+        const loadingGifContainer = document.getElementById('loading-gif-container');
+        
+        // --- INITIAL LOADING SEQUENCE ---
+        // Defines the text and timing for the boot animation.
+        const loadingSteps = [
+            { text: "Initializing system...", delay: 200 },
+            { text: "Connecting to mainframe...", delay: 300 },
+            { text: "Decrypting access codes...", delay: 250 },
+            { text: "Compiling assets...", delay: 400 },
+            { text: "Boot sequence complete.", delay: 150 },
+        ];
+
+        // --- FINISH LOADING ---
+        // Switches from the loading animation to the interactive prompt.
+        function finishLoading() {
+            loadingScreen.classList.add('hidden');
+            interactiveSection.classList.remove('hidden');
+            const welcomeMsg = document.createElement('div');
+            welcomeMsg.innerHTML = `Welcome. Type '<span class="text-pink">help</span>' for available commands.`;
+            outputDiv.appendChild(welcomeMsg);
+            commandInput.focus();
+        }
+
+        // --- RUN LOADING ANIMATION ---
+        // Executes the step-by-step loading sequence.
+        function runLoadingSequence(step = 0) {
+            if (step >= loadingSteps.length) {
+                setTimeout(finishLoading, 300);
+                return;
+            }
+
+            const currentStep = loadingSteps[step];
+            const logEntry = document.createElement('div');
+            logEntry.textContent = currentStep.text;
+            loadingLog.appendChild(logEntry);
+
+            const progress = ((step + 1) / loadingSteps.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `Loading... ${Math.round(progress)}%`;
+
+            terminal.scrollTop = terminal.scrollHeight;
+
+            setTimeout(() => {
+                runLoadingSequence(step + 1);
+            }, currentStep.delay);
+        }
+
+        // --- COMMAND DICTIONARY ---
+        // Defines all available terminal commands and their actions.
+        const commands = {
+            'help': `Available commands: <span class="text-pink">help</span>, <span class="text-pink">about</span>, <span class="text-pink">clear</span>, <span class="text-pink">enter</span>`,
+            'about': 'This terminal is a gateway to my personal space on the web. Built with pure HTML, CSS, and JS.',
+            'clear': () => {
+                outputDiv.innerHTML = `Welcome. Type '<span class="text-pink">help</span>' for available commands.`;
+                return ''; 
+            },
+            'enter': () => {
+                terminalContainer.classList.add('opacity-0');
+
+                setTimeout(() => {
+                    terminalContainer.classList.add('hidden');
+                    loadingGifContainer.classList.remove('hidden');
+                    setTimeout(() => loadingGifContainer.classList.add('opacity-100'), 10);
+
+                    setTimeout(() => {
+                        loadingGifContainer.classList.remove('opacity-100');
+                        
+                        setTimeout(() => {
+                            loadingGifContainer.classList.add('hidden');
+                            mainContent.classList.remove('hidden');
+                            setTimeout(() => mainContent.classList.add('opacity-100'), 10);
+                        }, 500);
+
+                    }, 3000);
+
+                }, 1000);
+
+                return 'Accessing secure page... Welcome.';
+            }
+        };
+
+        // --- EVENT LISTENER: USER INPUT ---
+        // Listens for the 'Enter' key to process commands.
+        commandInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                const command = commandInput.value.trim().toLowerCase();
+                const commandOutput = document.createElement('div');
+                commandOutput.innerHTML = `<span class="prompt">&gt;&nbsp;</span>${command}`;
+                outputDiv.appendChild(commandOutput);
+                handleCommand(command);
+                commandInput.value = '';
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+        });
+
+        // --- COMMAND HANDLER ---
+        // Processes the user's command and displays the output.
+        function handleCommand(command) {
+            const response = document.createElement('div');
+            if (commands[command]) {
+                const result = commands[command];
+                response.innerHTML = (typeof result === 'function') ? result() : result;
+            } else if (command === '') {
+                return;
+            } else {
+                response.innerHTML = `Command not found: <span class="text-error">${command}</span>. Type 'help' for commands.`;
+            }
+            if (response.innerHTML) {
+                 outputDiv.appendChild(response);
+            }
+        }
+
+        // --- INITIALIZE ---
+        // Starts the loading sequence when the page is fully loaded.
+        window.onload = () => {
+            runLoadingSequence();
+        };
+    </script>
+</body>
 </html>
