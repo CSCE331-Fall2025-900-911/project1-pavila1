@@ -1,0 +1,40 @@
+/* --- NEW STYLES FOR PORTFOLIO PAGE --- */
+
+.project-item {
+    border-top: 2px solid var(--border-color);
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.project-item:first-of-type {
+    border-top: none;
+}
+
+.project-item h3 {
+    color: var(--text-pink);
+    margin-top: 0;
+}
+
+.project-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.project-link {
+    display: inline-block;
+    background-color: var(--text-purple);
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.project-link:hover {
+    background-color: #8b5cf6; /* A slightly darker purple */
+}
