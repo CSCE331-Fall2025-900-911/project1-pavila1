@@ -1,5 +1,4 @@
 // --- THE BRAIN OF THE OPERATION ---
-// Grab all the important bits from the HTML so we can play with them.
 const terminal = document.getElementById('terminal');
 const loadingScreen = document.getElementById('loading-screen');
 const loadingLog = document.getElementById('loading-log');
@@ -11,20 +10,7 @@ const commandInput = document.getElementById('command-input');
 const terminalContainer = document.getElementById('terminal-container');
 const mainContent = document.getElementById('main-content');
 const loadingGifContainer = document.getElementById('loading-gif-container');
-const iconGrid = document.querySelector('.icon-grid');
-// Page Navigation Elements
-const comingSoonPage = document.getElementById('coming-soon-page');
-const comingSoonTitle = document.getElementById('coming-soon-title');
-const comingSoonBackButton = document.getElementById('coming-soon-back-button');
-const pageLinks = document.querySelectorAll('.page-link');
-
-// Window Page Elements
-const aboutMePage = document.getElementById('about-me-page');
-const resumePage = document.getElementById('resume-page'); 
-
-// NEW: Theme switcher checkbox
 const themeSwitchCheckbox = document.getElementById('theme-checkbox');
-
 
 // --- THE FAKE LOADING TEXT ---
 const loadingSteps = [
@@ -71,6 +57,7 @@ const commands = {
         return ''; 
     },
     'enter': () => {
+        // This function now handles the transition from terminal to the icon grid
         terminalContainer.classList.add('opacity-0');
         setTimeout(() => {
             terminalContainer.classList.add('hidden');
@@ -83,8 +70,8 @@ const commands = {
                     mainContent.classList.remove('hidden');
                     setTimeout(() => mainContent.classList.add('opacity-100'), 10);
                 }, 500);
-            }, 3000);
-        }, 1000);
+            }, 3000); // GIF display time
+        }, 1000); // Fade out time
         return 'Accessing secure page... Welcome.';
     }
 };
@@ -118,101 +105,7 @@ function handleCommand(command) {
     }
 }
 
-// --- PAGE NAVIGATION WIZARDRY ---
-function showPage(pageElement) {
-    iconGrid.classList.add('opacity-0');
-    setTimeout(() => {
-        iconGrid.style.display = 'none';
-        pageElement.classList.remove('hidden');
-        setTimeout(() => { pageElement.style.opacity = '1'; }, 10);
-    }, 500);
-}
-
-function hidePage(pageElement) {
-    pageElement.style.opacity = '0';
-    setTimeout(() => {
-        pageElement.classList.add('hidden');
-        iconGrid.style.display = 'grid';
-        setTimeout(() => { iconGrid.classList.remove('opacity-0'); }, 10);
-    }, 500);
-}
-
-pageLinks.forEach(link => {
-    link.addEventListener('click', function(event) {
-        event.preventDefault();
-        const pageTitle = this.dataset.pageTitle;
-        
-        if (pageTitle === 'About Me') {
-            showPage(aboutMePage);
-        } else if (pageTitle === 'Resume') { // NEW
-            showPage(resumePage);
-        }else {
-            comingSoonTitle.textContent = `${pageTitle} - Coming Soon`;
-            showPage(comingSoonPage);
-        }
-    });
-});
-
-comingSoonBackButton.addEventListener('click', () => hidePage(comingSoonPage));
-
-// --- WINDOWS 95 MODE ACTIVATED (FOR ALL WINDOWS) ---
-function initializeWindow(windowId) {
-    const windowPane = document.getElementById(windowId);
-    if (!windowPane) return;
-
-    const header = windowPane.querySelector('.window-header');
-    const body = windowPane.querySelector('.resume-body, .about-me-body');
-    const minimizeBtn = header.querySelector('.minimize');
-    const maximizeBtn = header.querySelector('.maximize');
-    const closeBtn = header.querySelector('.close');
-    const pageContainer = document.getElementById(closeBtn.dataset.page);
-
-    let isDragging = false;
-    let offsetX, offsetY;
-
-    header.addEventListener('mousedown', (e) => {
-        if (e.target.classList.contains('window-control-btn')) return;
-        isDragging = true;
-        offsetX = e.clientX - windowPane.offsetLeft;
-        offsetY = e.clientY - windowPane.offsetTop;
-        e.preventDefault();
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-            windowPane.style.left = `${e.clientX - offsetX}px`;
-            windowPane.style.top = `${e.clientY - offsetY}px`;
-        }
-    });
-
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-    });
-    
-    closeBtn.addEventListener('click', () => hidePage(pageContainer));
-
-    maximizeBtn.addEventListener('click', () => {
-         windowPane.classList.toggle('maximized');
-    });
-
-    minimizeBtn.addEventListener('click', () => {
-        const isMinimized = body.style.display === 'none';
-        body.style.display = isMinimized ? '' : 'none';
-        if (!isMinimized) {
-            windowPane.dataset.originalHeight = windowPane.style.height;
-            windowPane.style.height = header.offsetHeight + 'px';
-            windowPane.style.resize = 'none';
-        } else {
-            windowPane.style.height = windowPane.dataset.originalHeight || '';
-            windowPane.style.resize = 'both';
-        }
-    });
-}
-
-initializeWindow('about-me-window');
-initializeWindow('resume-window'); 
-
-// --- NEW: THEME SWITCHER LOGIC ---
+// --- THEME SWITCHER LOGIC (For future use) ---
 themeSwitchCheckbox.addEventListener('change', () => {
     mainContent.classList.toggle('theme-light');
 });
