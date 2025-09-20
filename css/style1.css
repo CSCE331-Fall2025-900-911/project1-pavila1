@@ -1,40 +1,609 @@
-/* --- NEW STYLES FOR PORTFOLIO PAGE --- */
-
-.project-item {
-    border-top: 2px solid var(--border-color);
-    padding-top: 1.5rem;
-    margin-top: 1.5rem;
+/* --- THE ALMIGHTY COLOR PALETTE --- */
+:root {
+    --bg-main: #f8f9fc;
+    --terminal-bg: rgba(255, 255, 255, 0.6);
+    --header-bg: #fdeef5;
+    --text-main: #4a5568;
+    --text-purple: #a78bfa;
+    --text-pink: #f472b6;
+    --text-error: #ef4444;
+    --shadow-color: rgba(244, 114, 182, 0.2);
+    --border-color: rgba(253, 191, 211, 0.5);
+    --dot-purple: #d8b4fe;
+    --dot-pink-1: #f9a8d4;
+    --dot-pink-2: #fbcfe8;
+    --progress-bar-bg: #d8b4fe;
+    --progress-container-bg: rgba(253, 191, 211, 0.3);
+    --input-bg: rgba(253, 191, 211, 0.3);
 }
 
-.project-item:first-of-type {
-    border-top: none;
+/* --- GENERAL PAGE VIBES --- */
+body {
+    font-family: 'Fira Code', monospace;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    margin: 0;
+    padding: 1rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+    display: none;
 }
 
-.project-item h3 {
-    color: var(--text-pink);
-    margin-top: 0;
-}
-
-.project-item img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-    margin-bottom: 1rem;
+/* --- THE TERMINAL'S HOUSE --- */
+#terminal-container {
+    width: 100%;
+    max-width: 56rem;
+    height: 80vh;
+    background-color: var(--terminal-bg);
+    border-radius: 0.5rem;
+    box-shadow: 0 25px 50px -12px var(--shadow-color);
     border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: opacity 1s ease-in-out;
 }
 
-.project-link {
-    display: inline-block;
-    background-color: var(--text-purple);
-    color: white;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    border-radius: 4px;
+/* --- TERMINAL TOP BAR --- */
+.terminal-header {
+    background-color: var(--header-bg);
+    padding: 0.5rem;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+.dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 9999px;
+    background-color: var(--dot-purple); /* Added for visibility */
+}
+.dot-pink-1 { background-color: var(--dot-pink-1); }
+.dot-pink-2 { background-color: var(--dot-pink-2); }
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: 0.75rem;
+}
+.header-title svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--text-pink);
+}
+.header-title span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6b7280;
+}
+.user-info {
+    font-size: 0.875rem;
+    color: var(--text-purple);
+}
+
+/* --- INSIDE THE TERMINAL --- */
+#terminal {
+    padding: 1rem;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+.welcome-title {
+    font-size: 1.25rem;
     font-weight: bold;
-    margin-top: 0.5rem;
-    transition: background-color 0.3s;
+    color: var(--text-purple);
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
-.project-link:hover {
-    background-color: #8b5cf6; /* A slightly darker purple */
+/* --- FAKE HACKER LOADING SCREEN --- */
+#loading-screen {
+    font-size: 0.875rem;
+}
+.progress-bar-container {
+    width: 100%;
+    background-color: var(--progress-container-bg);
+    border-radius: 9999px;
+    height: 0.375rem;
+    margin-top: 0.75rem;
+}
+#progress-bar {
+    background-color: var(--progress-bar-bg);
+    height: 100%;
+    border-radius: 9999px;
+    width: 0%;
+    transition: width 0.3s ease-in-out;
+}
+#progress-text {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    text-align: right;
+    margin-top: 0.25rem;
+}
+
+/* --- THE ALL-IMPORTANT INPUT BOX --- */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    background-color: var(--input-bg);
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+}
+.prompt {
+    color: var(--text-purple);
+}
+#command-input {
+    background-color: transparent;
+    border: none;
+    color: var(--text-main);
+    width: 100%;
+    outline: none;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+}
+
+/* --- THE BLINKING CURSOR OF DESTINY --- */
+.cursor {
+    width: 10px;
+    height: 1.2rem;
+    background-color: var(--text-pink);
+    margin-right: 5px;
+    animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+    50% { background-color: transparent; }
+}
+
+/* --- THE MAIN EVENT: YOUR PAGE --- */
+#main-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black; 
+    background-image: url('https://i.pinimg.com/1200x/d4/3e/bf/d43ebfa409811417b05e621e199699f2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity 1s ease-in-out, background-image 1s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- THE ICON ARMY --- */
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
+    transition: opacity 0.5s ease-in-out;
+}
+.icon-link {
+    background: rgba(253, 191, 211, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    border: 1px solid rgba(253, 191, 211, 0.2);
+    padding: 1.5rem;
+    color: white;
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 120px;
+    height: 120px;
+    text-align: center;
+}
+.icon-link:hover {
+    background: rgba(253, 191, 211, 0.3);
+    transform: translateY(-5px);
+}
+.icon-link svg {
+    width: 40px;
+    height: 40px;
+    fill: white;
+    transition: fill 0.3s ease;
+}
+
+/* --- INTERACTIVE WINDOW STYLES (SHARED) --- */
+.page-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+.window-pane {
+    min-width: 400px;
+    min-height: 300px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(220, 220, 220, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    display: flex;
+    flex-direction: column;
+    resize: both;
+    overflow: hidden;
+    pointer-events: auto;
+}
+.window-pane.maximized {
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    resize: none;
+    border-radius: 0;
+}
+.window-header {
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    cursor: move;
+    flex-shrink: 0;
+}
+.window-title {
+    font-weight: bold;
+}
+.window-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+.window-control-btn {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.minimize { background-color: #fbd38d; }
+.maximize { background-color: #81e6d9; }
+.close { background-color: #f56565; }
+
+/* --- ABOUT ME WINDOW STYLES --- */
+#about-me-window {
+    width: 800px;
+    height: 600px;
+}
+#about-me-header {
+    background: rgba(244, 114, 182, 0.5);
+}
+.about-me-body {
+    padding: 2rem;
+    overflow-y: auto;
+    flex-grow: 1;
+    color: var(--text-main);
+}
+.about-header-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(244, 114, 182, 0.5);
+    flex-shrink: 0;
+}
+.header-text h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.25rem;
+    color: var(--text-main);
+}
+.header-text p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #6b7280;
+}
+
+.about-me-body h2 {
+    font-size: 1.25rem;
+    color: var(--text-purple);
+    border-bottom: 2px solid var(--text-purple);
+    padding-bottom: 0.5rem;
+    margin: 2rem 0 1rem 0;
+}
+.about-me-body p, .about-me-body ul {
+     font-size: 0.9rem;
+     line-height: 1.6;
+}
+.about-me-body ul {
+    list-style: none;
+    padding-left: 0;
+}
+.about-me-body li {
+    padding-left: 1.2em;
+    text-indent: -1.2em;
+    margin-bottom: 0.5rem;
+}
+.about-me-body li::before {
+    content: "•";
+    color: var(--text-purple);
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+/* --- NEW: RESUME WINDOW STYLES --- */
+#resume-window {
+    width: 8.5in;
+    height: 11in;
+    max-width: 90vw;
+    max-height: 85vh;
+}
+#resume-header {
+    background: rgba(167, 139, 250, 0.7);
+}
+.resume-body {
+    padding: 2.5rem;
+    overflow-y: auto;
+    flex-grow: 1;
+    color: var(--text-main);
+    background-color: #fff;
+}
+.resume-header-info {
+    text-align: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+.resume-header-info h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: var(--text-main);
+}
+.resume-header-info p {
+    margin: 0;
+    font-size: 1rem;
+    color: #6b7280;
+}
+.resume-section {
+    margin-bottom: 1.5rem;
+}
+.resume-section h2 {
+    font-size: 1.2rem;
+    color: var(--text-purple);
+    border-bottom: 2px solid var(--text-purple);
+    padding-bottom: 0.25rem;
+    margin: 0 0 0.75rem 0;
+}
+.resume-section p, .resume-section ul {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+.skills-list {
+    list-style: none;
+    padding: 0;
+    columns: 2;
+    gap: 2rem;
+}
+.skills-list li {
+    margin-bottom: 0.25rem;
+}
+.project-title {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+.project-tech {
+    font-style: italic;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+.project-desc {
+    list-style: circle;
+    padding-left: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+/* --- THE "NOTHING TO SEE HERE" PAGE --- */
+.page-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    text-align: center;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+#coming-soon-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+#coming-soon-page p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* --- THE ESCAPE HATCH & THEME SWITCHER --- */
+.button-container {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.page-button, .back-button {
+    background-color: rgba(244, 114, 182, 0.7);
+    color: white;
+    font-family: 'Fira Code', monospace;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+.page-button:hover, .back-button:hover {
+    background-color: rgba(236, 72, 153, 0.9);
+}
+
+/* --- NEW: THEME SWITCH STYLES --- */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 54px;
+    height: 30px;
+}
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(244, 114, 182, 0.7);
+    transition: .4s;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked + .slider {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+#main-content.theme-light .slider {
+     background-color: rgba(255, 255, 255, 0.5);
+     border-color: rgba(244, 114, 182, 0.4);
+}
+#main-content.theme-light input + .slider:before {
+    background-color: var(--text-pink);
+}
+#main-content.theme-light input:checked + .slider {
+    background-color: rgba(244, 114, 182, 0.7);
+}
+#main-content.theme-light input:checked + .slider:before {
+    background-color: white;
+}
+
+/* --- THEME 2 STYLES (Light/Floral) --- */
+#main-content.theme-light {
+    background-image: url('https://i.pinimg.com/1200x/f1/14/f6/f114f66184aecbc8de48c68fc9dadbfe.jpg');
+}
+#main-content.theme-light .icon-link {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(244, 114, 182, 0.4);
+    color: var(--text-pink);
+}
+#main-content.theme-light .icon-link svg {
+    fill: var(--text-pink);
+}
+#main-content.theme-light .icon-link:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+#main-content.theme-light .page-button {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(244, 114, 182, 0.4);
+    color: var(--text-pink);
+}
+#main-content.theme-light .page-button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* --- THE DRAMATIC ENTRANCE GIF --- */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+.loading-gif {
+    width: 150px; 
+    height: 150px;
+}
+
+/* --- BORING HELPER CLASSES --- */
+.hidden {
+    display: none !important;
+}
+.opacity-0 {
+    opacity: 0;
+}
+.opacity-100 {
+    opacity: 1;
+}
+.text-pink {
+    color: var(--text-pink);
+}
+.text-error {
+    color: var(--text-error);
 }
