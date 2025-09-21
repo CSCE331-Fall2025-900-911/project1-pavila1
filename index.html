@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Paola Avila</title>
-    <link rel="stylesheet" href="css/style2.css">
+    <title>Paola Avila - Home</title>
+    <link rel="stylesheet" href="css/style1.css">
     </head>
 <body>
 
@@ -20,14 +20,63 @@
         </nav>
     </header>
 
-    <main class="page-content">
-        <h2>Welcome to my Interactive Portfolio</h2>
-        <p>This is the main landing page. The icon grid from your screenshot will be the primary content.</p>
-    </main>
+    <div class="background-container"></div>
+    <div class="overlay"></div>
 
-    <footer class="page-footer">
-        <p>&copy; 2025 Paola Avila. All rights reserved.</p>
-    </footer>
+    <div id="terminal">
+        <div id="terminal-header">
+            <span>bash -- 75x24</span>
+        </div>
+        <div id="terminal-body">
+            <div id="output"></div>
+            <div class="prompt-line">
+                <span class="prompt">guest@pavila-portfolio:~$</span>
+                <input type="text" id="commandInput" autofocus autocomplete="off">
+            </div>
+        </div>
+    </div>
+
+    <div id="iconGrid" class="hidden">
+        <a href="portfolio.html" class="icon-link">
+            <div class="icon" id="icon-about">
+                <img src="img/user-solid.svg" alt="About Me">
+                <span>About Me</span>
+            </div>
+        </a>
+        <a href="qualifications.html" class="icon-link">
+            <div class="icon" id="icon-qualifications">
+                <img src="img/file-lines-solid.svg" alt="Qualifications">
+                <span>Qualifications</span>
+            </div>
+        </a>
+        <a href="#" class="icon-link"> <div class="icon" id="icon-projects">
+                <img src="img/folder-open-solid.svg" alt="Projects">
+                <span>Projects</span>
+            </div>
+        </a>
+        <a href="https://github.com/your-username" target="_blank" class="icon-link">
+            <div class="icon" id="icon-github">
+                <img src="img/github.svg" alt="GitHub">
+                <span>GitHub</span>
+            </div>
+        </a>
+        <a href="mailto:your-email@example.com" class="icon-link">
+            <div class="icon" id="icon-contact">
+                <img src="img/envelope-solid.svg" alt="Contact Me">
+                <span>Contact Me</span>
+            </div>
+        </a>
+        <a href="https://linkedin.com/in/your-profile" target="_blank" class="icon-link">
+            <div class="icon" id="icon-linkedin">
+                <img src="img/linkedin.svg" alt="LinkedIn">
+                <span>LinkedIn</span>
+            </div>
+        </a>
+    </div>
+
+    <button id="restartTerminal" class="hidden">Restart Terminal</button>
+
+    <script src="js/script.js"></script>
 
 </body>
 </html>
