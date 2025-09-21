@@ -1,4 +1,4 @@
-/* --- THE LIGHT, MINIMALIST PALETTE --- */
+/* --- THE ALMIGHTY COLOR PALETTE --- */
 :root {
     --bg-main: #f8f9fc;
     --terminal-bg: rgba(255, 255, 255, 0.6);
@@ -12,14 +12,12 @@
     --dot-red: #f87272;
     --dot-yellow: #f4d048;
     --dot-green: #68d391;
-    --progress-bar-bg: #d8b4fe;
-    --progress-container-bg: rgba(253, 191, 211, 0.3);
     --input-bg: rgba(253, 191, 211, 0.3);
 }
 
 /* --- GENERAL PAGE VIBES --- */
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Fira Code', monospace;
     background-color: var(--bg-main);
     color: var(--text-main);
     margin: 0;
@@ -89,6 +87,10 @@ body {
     overflow-y: auto;
     white-space: pre-wrap;
     word-wrap: break-word;
+    display: flex; /* Added flex to center the initial message */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 .terminal-body p {
@@ -96,11 +98,10 @@ body {
     padding: 0;
     line-height: 1.5;
 }
-.terminal-body p:first-child {
+.welcome-message-text {
     font-size: 1.25rem;
     font-weight: bold;
     color: var(--text-purple);
-    text-align: center;
     margin-bottom: 1rem;
 }
 .prompt-text {
@@ -122,6 +123,8 @@ body {
     padding: 0.75rem 1.5rem;
     background-color: var(--input-bg);
     border-top: 1px solid var(--border-color);
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }
 .prompt-input {
     background: transparent;
