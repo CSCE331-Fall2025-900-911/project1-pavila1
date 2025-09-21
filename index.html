@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paola Avila - Portfolio</title>
-   
-<link rel="stylesheet" href="CSS/style2.css"></head>
+    
+    <!-- Link to the main style for the terminal. -->
+    <link rel="stylesheet" href="style2.css">
+    
+    <!-- We will link the JavaScript file here. -->
+</head>
 <body>
 
     <div class="terminal-container">
@@ -26,111 +30,9 @@
             <input type="text" id="terminal-input" class="prompt-input" autofocus autocomplete="off">
         </div>
     </div>
-
-    <script>
-        const inputEl = document.getElementById('terminal-input');
-        const outputEl = document.getElementById('terminal-output');
-
-        const availableCommands = {
-            'help': 'Displays a list of available commands.',
-            'projects': 'View my technical portfolio.',
-            'resume': 'Learn about my qualifications and view my resume.',
-            'service': 'Explore my community service activities.',
-            'genai': 'See my projects with Generative AI.',
-            'contact': 'Contact me.',
-            'github': 'My GitHub profile.',
-            '✨gen-project-idea': 'Generates a new web development project idea using the Gemini API.'
-        };
-
-        const welcomeMessage = "Welcome to my website\n\nWelcome. Type 'help' for available commands.";
-        const externalLinks = {
-            'github': 'https://github.com/your-github-username', // Replace with your GitHub URL
-            'contact': 'mailto:your_email@tamu.edu' // Replace with your TAMU email
-        };
-
-        const pages = {
-            'projects': 'portfolio.html',
-            'resume': 'qualifications.html',
-            'service': 'service.html',
-            'genai': 'genai.html',
-            'contact': '#', // This will be handled with JavaScript to open a mail client
-            'github': '#' // This will be handled with JavaScript to open a new tab
-        };
-
-        function addOutputLine(text) {
-            const line = document.createElement('p');
-            line.innerHTML = text.replace(/\n/g, '<br>'); // Handle newlines
-            outputEl.appendChild(line);
-            outputEl.scrollTop = outputEl.scrollHeight;
-        }
-
-        async function processCommand(command) {
-            command = command.trim().toLowerCase();
-            addOutputLine(`<span class="prompt-text">></span> ${command}`);
-
-            if (command === 'help') {
-                let helpText = "Available commands:\n\n";
-                for (const cmd in availableCommands) {
-                    helpText += `  <span class="command-name">${cmd}</span> - ${availableCommands[cmd]}\n`;
-                }
-                addOutputLine(helpText);
-            } else if (command === '✨gen-project-idea') {
-                addOutputLine('Generating a creative project idea... Please wait.');
-                await generateProjectIdea();
-            } else if (pages[command]) {
-                if (command === 'contact' || command === 'github') {
-                    window.open(externalLinks[command], '_blank');
-                    addOutputLine(`Opening ${command} in a new tab...`);
-                } else {
-                    window.location.href = pages[command];
-                }
-            } else {
-                addOutputLine(`<span class="error">Command not found: ${command}. Type 'help' to see a list of commands.</span>`);
-            }
-        }
-
-        async function generateProjectIdea() {
-            // The API key is automatically provided by the Canvas environment.
-            const apiKey = ""; 
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-            
-            const prompt = `Generate a unique, creative, and technically challenging web development project idea. The response should be formatted with a clear project title, a brief description, and a list of 3-5 key technologies that would be needed to build it.`;
-
-            const payload = {
-                contents: [{ parts: [{ text: prompt }] }],
-                tools: [{ "google_search": {} }],
-            };
-
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            const result = await response.json();
-            const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-
-            if (text) {
-                addOutputLine(`\n<span class="prompt-text">✨ Generated Project Idea:</span>\n`);
-                addOutputLine(text);
-            } else {
-                addOutputLine('<span class="error">Failed to generate a project idea. Please try again.</span>');
-            }
-        }
-
-        // Initial welcome message
-        addOutputLine(welcomeMessage);
-
-        // Event listener for the input field
-        inputEl.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault(); // Prevents a new line in the input
-                const command = inputEl.value;
-                inputEl.value = ''; // Clear the input
-                processCommand(command);
-            }
-        });
-    </script>
+    
+    <!-- The JavaScript file is linked here at the bottom of the body. -->
+    <script src="script.js"></script>
 
 </body>
 </html>
