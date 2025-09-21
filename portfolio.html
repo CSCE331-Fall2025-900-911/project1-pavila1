@@ -7,38 +7,72 @@
     <link rel="stylesheet" href="style2.css">
 </head>
 <body>
-
-    <div class="page-container" style="display: flex;">
-        <div class="page-header">
-            <div class="header-dots">
+    <div id="browser-frame">
+        <div class="browser-header">
+            <div class="browser-controls">
                 <div class="dot red"></div>
                 <div class="dot yellow"></div>
                 <div class="dot green"></div>
             </div>
-            <span class="page-title">My Portfolio</span>
-            <span class="user-info">user@portfolio</span>
+            <div class="address-bar">
+                <span>https://</span>
+                <input type="text" value="your-portfolio.com/portfolio.html" readonly>
+            </div>
+            <div class="window-buttons">
+                <span class="window-btn minimize">_</span>
+                <span class="window-btn maximize">❤️</span>
+                <span class="window-btn close">X</span>
+            </div>
         </div>
-        <div class="page-content">
-            <h1>My Technical Projects</h1>
-            
-            <p>Welcome to my technical portfolio. Here you'll find a collection of projects I've completed, demonstrating my skills in various areas of computer science and software development.</p>
-            
-            <p>The projects listed below are examples of my work. They highlight my ability to apply theoretical knowledge to practical problems and my proficiency in different programming languages and frameworks.</p>
+        <div id="portfolio-page" class="page-container" style="display: flex;">
+            <div class="page-content">
+                <h1>My Technical Projects</h1>
+                
+                <p>Welcome to my technical portfolio. Here you'll find a collection of projects I've completed, demonstrating my skills in various areas of computer science and software development.</p>
+                
+                <p>The projects listed below are examples of my work. They highlight my ability to apply theoretical knowledge to practical problems and my proficiency in different programming languages and frameworks.</p>
 
-            <h2>Project One: Web-Based Terminal Interface</h2>
-            <p>This project is the very website you are viewing! It demonstrates proficiency in HTML, CSS, and JavaScript to create a unique and highly interactive user experience. It uses a command-line interface as its primary navigation, mimicking a retro terminal.
-                <br><a href="https://github.com/your-github-username/project-one-repo" target="_blank">View on GitHub</a>
-            </p>
+                <div class="project-card">
+                    <h2>Project One: Web-Based Terminal Interface</h2>
+                    <p>This project is the very website you are viewing! It demonstrates proficiency in HTML, CSS, and JavaScript to create a unique and highly interactive user experience. It uses a command-line interface as its primary navigation, mimicking a retro terminal.
+                        <br><a href="https://github.com/your-github-username/project-one-repo" target="_blank">View on GitHub</a>
+                    </p>
+                </div>
+                
+                <div class="project-card">
+                    <h2>Project Two: Data Visualization Tool</h2>
+                    <p>A tool built to visualize complex datasets. It uses JavaScript libraries to render interactive charts and graphs, allowing users to explore data trends and patterns. The project focuses on efficient data handling and a clean user interface.
+                        <br><a href="https://github.com/your-github-username/project-two-repo" target="_blank">View on GitHub</a>
+                    </p>
+                </div>
 
-            <h2>Project Two: Data Visualization Tool</h2>
-            <p>A tool built to visualize complex datasets. It uses JavaScript libraries to render interactive charts and graphs, allowing users to explore data trends and patterns. The project focuses on efficient data handling and a clean user interface.
-                <br><a href="https://github.com/your-github-username/project-two-repo" target="_blank">View on GitHub</a>
-            </p>
-            
-            <div class="back-link-container">
-                <a href="index.html" class="back-link">Back to Homepage</a>
+                <div class="project-card">
+                    <h2>Project Three: ECEN Digital Logic Project</h2>
+                    <p>A project from my ECEN class focused on implementing digital logic circuits. It involved using hardware description languages and simulation tools to design and test a functional circuit. This project strengthened my understanding of low-level hardware design principles.
+                        <br><a href="https://github.com/your-github-username/ecen-project" target="_blank">View on GitHub</a>
+                    </p>
+                </div>
+
+                <div class="project-card">
+                    <h2>Project Four: CSC Fun Project</h2>
+                    <p>A computer science project that allowed me to explore a topic of personal interest. It involved developing a small application using a new programming language and demonstrating my ability to learn new technologies quickly and apply them to a creative problem.
+                        <br><a href="https://github.com/your-github-username/csc-fun-project" target="_blank">View on GitHub</a>
+                    </p>
+                </div>
+
+                <div class="project-card">
+                    <h2>Project Five: Interactive Game Development</h2>
+                    <p>An interactive game created using front-end web technologies. This project showcases my skills in game logic, state management, and user interaction, providing an an engaging experience for the player.
+                        <br><a href="https://github.com/your-github-username/interactive-game" target="_blank">View on GitHub</a>
+                    </p>
+                </div>
+                
+                <div class="back-link-container">
+                    <button class="back-link" onclick="window.location.href='index.html'">Back to Homepage</button>
+                </div>
             </div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
