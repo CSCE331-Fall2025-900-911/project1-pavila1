@@ -3,16 +3,40 @@
     --bg-main: #f8f9fc;
     --terminal-bg: rgba(255, 255, 255, 0.6);
     --header-bg: #fdeef5;
-    --text-main: #4a5568;
-    --text-purple: #a78bfa;
-    --text-pink: #f472b6;
+    --text-main: #2a334a;
+    --text-purple: #7b29a7;
+    --text-pink: #c72d7f;
     --text-error: #ef4444;
     --shadow-color: rgba(244, 114, 182, 0.2);
-    --border-color: rgba(253, 191, 211, 0.5);
+    --border-color: rgba(253, 191, 211, 0.4);
     --dot-red: #f87272;
     --dot-yellow: #f4d048;
     --dot-green: #68d391;
-    --input-bg: rgba(253, 191, 211, 0.3);
+    --input-bg: rgba(255, 255, 255, 0.7);
+    /* New colors for the browser frame */
+    --browser-frame-bg: #fee8ef;
+    --browser-header-bg: #ffd1dc;
+    --address-bar-bg: #ffffff;
+    --window-btn-color: #6a6a6a;
+}
+
+/* --- LIGHT THEME COLOR PALETTE (Style 1) --- */
+:root.light-theme {
+    --bg-main: #ffffff;
+    --terminal-bg: rgba(255, 255, 255, 0.8);
+    --header-bg: #f8eaf0;
+    --text-main: #333333;
+    --text-purple: #9b59b6;
+    --text-pink: #e91e63;
+    --text-error: #c0392b;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-color: rgba(220, 220, 220, 0.5);
+    --input-bg: rgba(240, 240, 240, 0.8);
+    /* Light theme browser frame colors */
+    --browser-frame-bg: #e0f2f7;
+    --browser-header-bg: #cce9f5;
+    --address-bar-bg: #ffffff;
+    --window-btn-color: #333333;
 }
 
 /* --- GENERAL PAGE VIBES --- */
@@ -21,117 +45,732 @@ body {
     background-color: var(--bg-main);
     color: var(--text-main);
     margin: 0;
-    padding: 1rem;
+    padding: 0;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    transition: background-color 0.5s ease;
+    
+    background-image: none;
+    background-color: var(--bg-main);
 }
 
-/* --- THE TERMINAL CONTAINER --- */
-.terminal-container {
+/* --- THE NEW DESKTOP CONTAINER --- */
+.desktop-container {
+    width: 100%;
+    height: 100vh;
+    background-image: url('https://i.pinimg.com/736x/01/55/b4/0155b47ad84c87b4e3377466e5503032.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-image 0.5s ease;
+    padding: 2rem;
+}
+
+.desktop-container.light-theme-bg {
+    background-image: url('https://i.pinimg.com/736x/07/41/22/074122c26f0ba8b6cec214606ac46357.jpg');
+}
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4.5rem;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    transition: background 0.5s ease, border-color 0.5s ease;
+}
+
+.bottom-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4.5rem;
+    margin-top: 4rem;
+}
+
+.light-theme .icon-grid {
+    background: none;
+    border: none;
+}
+
+.icon-link {
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s ease-in-out, color 0.5s ease;
+}
+.icon-box {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.icon-box:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.light-theme .icon-link {
+    color: var(--text-main);
+}
+
+.light-theme .icon-link svg {
+    fill: var(--text-main);
+    transition: fill 0.5s ease;
+}
+
+.light-theme .icon-box {
+    background-color: rgba(240, 240, 240, 0.8);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(220, 220, 220, 0.5);
+}
+
+.light-theme .icon-box:hover {
+    background-color: rgba(230, 230, 230, 0.9);
+}
+
+.icon-link:hover {
+    transform: translateY(-5px);
+}
+
+.icon-link svg {
+    width: 65px;
+    height: 65px;
+    fill: #fff;
+}
+#toggle-style-btn {
+    background-color: transparent;
+    border: none;
+    font-family: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s ease-in-out, color 0.5s ease;
+}
+.icon-toggle-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: auto;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    position: relative;
+    cursor: pointer;
+}
+.light-theme .icon-toggle-btn {
+    background-color: rgba(240, 240, 240, 0.8);
+    border: 1px solid rgba(220, 220, 220, 0.5);
+}
+
+.icon-toggle-btn::before {
+    content: '';
+    position: relative;
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+.light-theme .icon-toggle-btn::before {
+    background-color: var(--text-main);
+    transform: translateX(25px);
+}
+.icon-toggle-btn span {
+    font-weight: bold;
+    color: #fff;
+}
+.light-theme .icon-toggle-btn span {
+    color: var(--text-main);
+}
+#browser-frame {
     width: 100%;
     max-width: 56rem;
     height: 80vh;
-    background-color: var(--terminal-bg);
-    border-radius: 0.5rem;
+    background-color: var(--browser-frame-bg);
+    border-radius: 0.75rem;
     box-shadow: 0 25px 50px -12px var(--shadow-color);
     border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    transition: opacity 1s ease-in-out;
+    overflow: hidden;
 }
 
-/* --- TERMINAL TOP BAR --- */
-.terminal-header {
-    background-color: var(--header-bg);
-    padding: 0.5rem;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
+.browser-header {
+    background-color: var(--browser-header-bg);
+    padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-size: 0.875rem;
 }
-.header-dots {
+
+.browser-controls {
     display: flex;
     gap: 0.5rem;
 }
-.dot {
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 9999px;
-}
-.dot.red { background-color: var(--dot-red); }
-.dot.yellow { background-color: var(--dot-yellow); }
-.dot.green { background-color: var(--dot-green); }
 
-.terminal-title {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--text-main);
-    opacity: 0.8;
-}
-
-.user-info {
-    font-size: 0.875rem;
-    color: var(--text-purple);
-}
-
-/* --- TERMINAL BODY (Output) --- */
-.terminal-body {
+.address-bar {
     flex-grow: 1;
+    display: flex;
+    align-items: center;
+    background-color: var(--address-bar-bg);
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.5rem;
+    margin: 0 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.address-bar span {
+    color: #6a6a6a;
+    margin-right: 0.25rem;
+}
+
+.address-bar input {
+    border: none;
+    background: transparent;
+    flex-grow: 1;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.875rem;
+    outline: none;
+}
+
+.window-buttons {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: var(--window-btn-color);
+}
+
+.window-btn {
+    cursor: pointer;
+    line-height: 1;
+}
+
+#terminal-intro {
+    flex-grow: 1;
+    width: auto;
+    height: auto;
+    max-width: none;
+    background-color: var(--terminal-bg);
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
     padding: 1.5rem;
-    overflow-y: auto;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    display: flex; /* Added flex to center the initial message */
+    overflow: hidden;
+    background-image: url('https://i.pinimg.com/originals/8e/55/40/8e55405f83edb57e51ffe4bb190d29e0.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#terminal-intro .page-header {
+    display: none;
+}
+
+#central-content {
+    flex-grow: 1;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 1.5rem;
 }
-.terminal-body p {
-    margin: 0;
-    padding: 0;
-    line-height: 1.5;
+
+.terminal-prompt-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    background-color: var(--input-bg);
+    border-top: 1px solid var(--border-color);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 .welcome-message-text {
     font-size: 1.25rem;
     font-weight: bold;
     color: var(--text-purple);
     margin-bottom: 1rem;
+    text-align: center;
 }
 .prompt-text {
     color: var(--text-pink);
     font-weight: bold;
+    margin-right: 5px;
 }
-.command-name {
-    color: var(--text-purple);
-    font-weight: bold;
-}
-.error {
-    color: var(--text-error);
-}
-
-/* --- TERMINAL PROMPT --- */
-.terminal-prompt-wrapper {
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1.5rem;
-    background-color: var(--input-bg);
-    border-top: 1px solid var(--border-color);
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-}
-.prompt-input {
+#intro-input {
     background: transparent;
     border: none;
     color: var(--text-main);
     font-family: inherit;
     font-size: 1rem;
-    width: 100%;
+    flex-grow: 1;
     outline: none;
+    caret-color: var(--text-pink);
 }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: var(--bg-main);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    color: var(--text-main);
+}
+.close-btn {
+    color: var(--text-main);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--text-error);
+}
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-main);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
+}
+.loading-gif {
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+}
+    </style>
+</head>
+<body>
+
+    <div id="loading-overlay" style="display: flex;">
+        <img src="https://i.pinimg.com/originals/2a/2b/ce/2a2bce0f8c0efa1042428363bb4fa3d3.gif" alt="Loading GIF" class="loading-gif">
+    </div>
+
+    <div id="browser-frame" style="display: none;">
+        <div class="browser-header">
+            <div class="browser-controls">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <div class="address-bar">
+                <span>https://</span>
+                <input type="text" value="your-portfolio.com" readonly>
+            </div>
+            <div class="window-buttons">
+                <span class="window-btn minimize">_</span>
+                <span class="window-btn maximize">❤️</span>
+                <span class="window-btn close">X</span>
+            </div>
+        </div>
+        <div id="terminal-intro" class="page-container">
+            <div id="intro-output" class="terminal-body">
+                <p class="welcome-message-text"></p>
+                <p></p>
+            </div>
+            <div class="terminal-prompt-wrapper">
+                <span class="prompt-text">></span>
+                <input type="text" id="intro-input" class="prompt-input" autofocus autocomplete="off">
+            </div>
+        </div>
+    </div>
+    <div id="index-page" class="desktop-container" style="display: none;">
+        <div class="icon-grid">
+            <a href="portfolio.html" class="icon-link icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
+                <span>Projects</span>
+            </a>
+            <a href="qualifications.html" class="icon-link icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                <span>Resume</span>
+            </a>
+            <a href="service.html" class="icon-link icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.93-2.5l-2.8-2.82c-.07-.08-.13-.17-.2-.25V11c0-.55-.45-1-1-1H9v-.8c0-.49-.4-.9-1-1-.48 0-.88.39-.98.86-.54.26-1.01.59-1.42.94L3.8 8.16C5.2 5.63 8.24 4 12 4c4.41 0 8.04 2.86 9.4 6.83l-2.45-1.13c-.63 1.25-1.5 2.37-2.59 3.28z"/></svg>
+                <span>Service</span>
+            </a>
+            <a href="genai.html" class="icon-link icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm0-4h-2V6h2v8z"/></svg>
+                <span>GenAI</span>
+            </a>
+            <a href="https://github.com/your-github-username" target="_blank" class="icon-link icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.804 8.207 11.387.6.111.819-.258.819-.575 0-.285-.011-1.04-.017-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.332-1.756-1.332-1.756-1.089-.745.082-.729.082-.729 1.205.084 1.838 1.238 1.838 1.238 1.07 1.833 2.809 1.306 3.492.999.108-.775.419-1.306.762-1.605-2.665-.304-5.466-1.334-5.466-5.931 0-1.31.468-2.381 1.237-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.006-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.293-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.922.43.371.817 1.109.817 2.235 0 1.605-.015 2.899-.015 3.295 0 .319.219.694.825.572 4.766-1.581 8.2-6.084 8.2-11.386C24 5.373 18.627 0 12 0z"/></svg>
+                <span>GitHub</span>
+            </a>
+            <a href="mailto:your_email@tamu.edu" target="_blank" class="icon-link icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+                <span>Contact</span>
+            </a>
+        </div>
+        <div class="bottom-controls">
+            <button id="toggle-style-btn" class="icon-link icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 16.5c3.59 0 6.5-2.91 6.5-6.5S15.59 5.5 12 5.5 5.5 8.41 5.5 12c0 3.59 2.91 6.5 6.5 6.5z"/></svg>
+                <span>Toggle Style</span>
+            </button>
+            <a href="index.html" class="icon-link icon-box">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H4v-2h16v2zm0-4H4v-2h16v2zm0-4H4V7h16v2z"/></svg>
+                 <span>Back to Terminal</span>
+            </a>
+        </div>
+    </div>
+    <div id="genai-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 style="color: var(--text-purple); margin-top: 0;">Generated Project Idea</h2>
+        <p id="genai-output"></p>
+      </div>
+    </div>
+
+    <div id="portfolio-page" class="page-container" style="display: none;">
+        <div class="page-header">
+            <div class="header-dots">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <span class="page-title">My Portfolio</span>
+            <span class="user-info">user@portfolio</span>
+        </div>
+        <div class="page-content">
+            <h1>My Technical Projects</h1>
+            
+            <p>Welcome to my technical portfolio. Here you'll find a collection of projects I've completed, demonstrating my skills in various areas of computer science and software development.</p>
+            
+            <p>The projects listed below are examples of my work. They highlight my ability to apply theoretical knowledge to practical problems and my proficiency in different programming languages and frameworks.</p>
+
+            <h2>Project One: Web-Based Terminal Interface</h2>
+            <p>This project is the very website you are viewing! It demonstrates proficiency in HTML, CSS, and JavaScript to create a unique and highly interactive user experience. It uses a command-line interface as its primary navigation, mimicking a retro terminal.
+                <br><a href="https://github.com/your-github-username/project-one-repo" target="_blank">View on GitHub</a>
+            </p>
+
+            <h2>Project Two: Data Visualization Tool</h2>
+            <p>A tool built to visualize complex datasets. It uses JavaScript libraries to render interactive charts and graphs, allowing users to explore data trends and patterns. The project focuses on efficient data handling and a clean user interface.
+                <br><a href="https://github.com/your-github-username/project-two-repo" target="_blank">View on GitHub</a>
+            </p>
+            
+            <div class="back-link-container">
+                <a href="index.html" class="back-link">Back to Homepage</a>
+            </div>
+        </div>
+    </div>
+    <div id="qualifications-page" class="page-container" style="display: none;">
+        <div class="page-header">
+            <div class="header-dots">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <span class="page-title">My Qualifications</span>
+            <span class="user-info">user@portfolio</span>
+        </div>
+        <div class="page-content">
+            <h1>My Qualifications & Resume</h1>
+            <p>I believe that a strong foundation in computer science is built on more than just a list of programming languages; it's about a passion for problem-solving, a commitment to lifelong learning, and the ability to work collaboratively to build innovative solutions. My academic journey has provided me with a robust theoretical understanding of software engineering principles, from algorithm design to data structures, and my hands-on projects have allowed me to apply this knowledge in practical, real-world contexts.</p>
+            <p>My technical skills are a blend of academic learning and personal exploration. I've gained proficiency in core languages such as Python, Java, and C++, each offering a unique lens for tackling different computational challenges. In web development, I have experience with HTML and CSS, which I used to build the very website you are currently viewing, demonstrating my understanding of modern web design and user experience. I am also familiar with front-end frameworks like React and back-end technologies like Node.js, and I am committed to expanding my knowledge in these areas. On the database side, I have worked with both SQL and non-relational databases like MongoDB, understanding the importance of data management in application development. The tools of the trade are equally important, and I have a solid grasp of version control with Git, containerization with Docker, and integrated development environments like VS Code.</p>
+            <p>Beyond the technical, I have a strong interest in the ethical implications of artificial intelligence and the role of technology in society. I am particularly fascinated by the field of generative AI and its potential to revolutionize creative industries. This interest has driven me to explore projects that leverage AI to generate unique content and solve complex problems in novel ways. I am a firm believer that the best solutions are not just technically sound but are also thoughtfully designed to serve a greater purpose. As I continue my education, I am eager to delve deeper into these areas, pursuing opportunities that challenge me to grow as both a developer and a responsible digital citizen. My resume provides a more detailed look at my academic and professional journey, and I invite you to explore the rest of my portfolio to see my skills in action.</p>
+            <div class="back-link-container">
+                <a href="index.html" class="back-link">Back to Homepage</a>
+            </div>
+        </div>
+    </div>
+    <div id="service-page" class="page-container" style="display: none;">
+        <div class="page-header">
+            <div class="header-dots">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <span class="page-title">My Service</span>
+            <span class="user-info">user@portfolio</span>
+        </div>
+        <div class="page-content">
+            <h1>Community Service & Mentoring</h1>
+            <p>This page highlights my commitment to giving back to the community and helping others learn and grow. I believe that service is an essential part of being a well-rounded professional.</p>
+            <h2>Volunteering</h2>
+            <p>I have volunteered with several local organizations, assisting with community outreach programs and educational events. These experiences have allowed me to apply my skills in a non-profit setting and contribute to causes I care about.</p>
+            <h2>Mentoring</h2>
+            <p>I enjoy mentoring students and peers, offering guidance on coding projects, career paths, and technical challenges. I am passionate about sharing my knowledge and helping others succeed in their computer science journey.</p>
+            <div class="back-link-container">
+                <a href="index.html" class="back-link">Back to Homepage</a>
+            </div>
+        </div>
+    </div>
+    <div id="genai-page" class="page-container" style="display: none;">
+        <div class="page-header">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+        </div>
+        <span class="page-title">GenAI Projects</span>
+        <span class="user-info">user@portfolio</span>
+    </div>
+    <div class="page-content">
+        <h1>Generative AI</h1>
+        <p>This page demonstrates the capabilities of generative artificial intelligence. The content on this page was entirely generated by an AI model and is a testament to the power of modern AI.</p>
+        
+        <p>The following is the final prompt that was used to create the project ideas in this application. The prompt has been refined over several iterations to produce the most accurate and creative results.</p>
+        
+        <textarea style="width: 100%; height: 100px; padding: 10px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--input-bg); color: var(--text-main); font-family: 'Fira Code', monospace;" readonly>Generate a unique, creative, and technically challenging web development project idea. The response should be formatted with a clear project title, a brief description, and a list of 3-5 key technologies that would be needed to build it.</textarea>
+        
+        <div class="back-link-container">
+            <a href="index.html" class="back-link">Back to Homepage</a>
+        </div>
+    </div>
+    <div id="genai-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 style="color: var(--text-purple); margin-top: 0;">Generated Project Idea</h2>
+        <p id="genai-output"></p>
+      </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const introInput = document.getElementById('intro-input');
+            const introOutput = document.getElementById('intro-output');
+            const browserFrame = document.getElementById('browser-frame');
+            const loadingOverlay = document.getElementById('loading-overlay');
+            const welcomeP = document.querySelector('#terminal-intro .welcome-message-text');
+            const proceedP = document.querySelector('#terminal-intro .terminal-body p:nth-of-type(2)');
+            const indexPage = document.getElementById('index-page');
+
+            const welcomeMessage = "Welcome to my website";
+            const proceedMessage = "Type 'enter' to proceed.";
+            let charIndex = 0;
+            let isTyping = false;
+
+            // Show loading overlay on page load
+            loadingOverlay.style.display = 'flex';
+            
+            // Wait a bit before showing the terminal
+            setTimeout(showTerminal, 3000); // 3 seconds delay for loading screen
+
+            function typeWriter(message, element, callback) {
+                isTyping = true;
+                element.innerHTML = '';
+                charIndex = 0;
+
+                function type() {
+                    if (charIndex < message.length) {
+                        element.innerHTML += message.charAt(charIndex);
+                        charIndex++;
+                        setTimeout(type, 70);
+                    } else {
+                        isTyping = false;
+                        if (callback) callback();
+                    }
+                }
+                type();
+            }
+
+            function showTerminal() {
+                loadingOverlay.style.display = 'none';
+                browserFrame.style.display = 'flex';
+                
+                if (welcomeP && proceedP) {
+                    typeWriter(welcomeMessage, welcomeP, () => {
+                        typeWriter(proceedMessage, proceedP, () => {
+                            if (introInput) {
+                                introInput.disabled = false;
+                                introInput.focus();
+                            }
+                        });
+                    });
+                }
+            }
+
+            if (introInput) {
+                introInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        const command = introInput.value.trim().toLowerCase();
+                        
+                        // Append the command to the output before clearing the input
+                        const commandOutput = document.createElement('p');
+                        commandOutput.innerHTML = `<span class="prompt-text">></span> ${command}`;
+                        introOutput.appendChild(commandOutput);
+                        
+                        introInput.value = '';
+
+                        if (!isTyping) {
+                            if (command === 'enter') {
+                                // Hide terminal and show loading screen before desktop
+                                browserFrame.style.display = 'none';
+                                loadingOverlay.style.display = 'flex';
+                                loadingOverlay.style.opacity = '1';
+
+                                setTimeout(() => {
+                                    loadingOverlay.style.opacity = '0';
+                                    setTimeout(() => {
+                                        loadingOverlay.style.display = 'none';
+                                        indexPage.style.display = 'flex';
+                                    }, 1000);
+                                }, 3000); // 3-second delay
+                            } else if (command === 'help') {
+                                const helpMessage = `
+                                    <p>--- HELP ---</p>
+                                    <p>To view the site, type '<span class="prompt-text">enter</span>'.</p>
+                                    <p>For more information, type '<span class="prompt-text">info</span>'.</p>
+                                    <p>To clear the terminal, type '<span class="prompt-text">clear</span>'.</p>
+                                    <p>To see this list of commands again, type '<span class="prompt-text">help</span>'.</p>
+                                `;
+                                introOutput.innerHTML += helpMessage;
+                            } else if (command === 'info') {
+                                const infoMessage = `<p>This is my personal website filled with skills as HTML, CSS, and JavaScript.</p>`;
+                                introOutput.innerHTML += infoMessage;
+                            } else if (command === 'clear') {
+                                introOutput.innerHTML = '';
+                                showTerminal();
+                            } else {
+                                const errorMessage = `<p style="color: var(--text-error);">Error: Command not found. Type '<span class="prompt-text">help</span>' for a list of commands.</p>`;
+                                introOutput.innerHTML += errorMessage;
+                            }
+                        }
+                        
+                        introOutput.scrollTop = introOutput.scrollHeight;
+                    }
+                });
+            }
+            
+            if (toggleStyleBtn) {
+                toggleStyleBtn.addEventListener('click', () => {
+                    document.documentElement.classList.toggle('light-theme');
+                    const desktopContainer = document.querySelector('.desktop-container');
+                    if (desktopContainer) {
+                        desktopContainer.classList.toggle('light-theme-bg');
+                    }
+                });
+            }
+
+            window.showPage = function(pageId) {
+                const allContainers = document.querySelectorAll('.desktop-container, .page-container');
+                allContainers.forEach(container => {
+                    container.style.display = 'none';
+                });
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.style.display = 'flex';
+                }
+            }
+
+            window.triggerGenAI = function() {
+                const loadingOverlay = document.getElementById('loading-overlay');
+                if (loadingOverlay) {
+                    loadingOverlay.style.display = 'flex';
+                    loadingOverlay.style.opacity = '1';
+                }
+                
+                generateProjectIdea().then(() => {
+                    if (loadingOverlay) {
+                        loadingOverlay.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingOverlay.style.display = 'none';
+                        }, 1000);
+                    }
+                });
+            }
+
+            window.showModal = function(content) {
+              const modal = document.getElementById('genai-modal');
+              const output = document.getElementById('genai-output');
+              if (output) output.innerText = content;
+              if (modal) modal.style.display = 'flex';
+            }
+
+            window.closeModal = function() {
+              const modal = document.getElementById('genai-modal');
+              if (modal) modal.style.display = 'none';
+            }
+
+            async function generateProjectIdea() {
+                const prompt = `Generate a unique, creative, and technically challenging web development project idea. The response should be formatted with a clear project title, a brief description, and a list of 3-5 key technologies that would be needed to build it.`;
+                const apiKey = "YOUR_API_KEY_HERE";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: prompt }] }],
+                };
+                
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                    if (text) {
+                        showModal(text);
+                    } else {
+                        showModal('Failed to generate a project idea. Please try again.');
+                    }
+                } catch (error) {
+                    showModal('An error occurred while connecting to the API.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
