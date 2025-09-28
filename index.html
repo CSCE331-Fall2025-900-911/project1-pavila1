@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paola Avila - Portfolio</title>
-    <link rel="stylesheet" href="style2.css">
+    <script>
+      // Apply theme before the page renders to prevent FOUC
+      const savedStyle = sessionStorage.getItem("currentStyle") || "style2";
+      document.write(`<link rel="stylesheet" href="${savedStyle}.css" id="theme-style">`);
+    </script>
 </head>
 <body>
     <div id="loading-overlay" style="display: flex;">
-        <img src="https://i.pinimg.com/originals/2a/2b/ce/2a2bce0f8c0efa1042428363bb4fa3d3.gif" alt="Loading GIF" class="loading-gif">
+        <script>
+            const style = sessionStorage.getItem("currentStyle") || "style2";
+            const gifSrc = style === "style1" 
+                ? "https://i.pinimg.com/originals/05/bf/b1/05bfb13dbad7c8f3815c723d4c0c34be.gif" 
+                : "https://i.pinimg.com/originals/2a/2b/ce/2a2bce0f8c0efa1042428363bb4fa3d3.gif";
+            document.write(`<img src="${gifSrc}" id="loading-gif" alt="Loading GIF" class="loading-gif">`);
+        </script>
     </div>
 
     <div id="browser-frame" style="display: none;">
@@ -31,7 +41,7 @@
         <div id="terminal-intro" class="page-container">
             <div id="intro-output" class="terminal-body">
                 <p class="welcome-message-text"></p>
-                <p></p>
+                <p class="proceed-message"></p>
             </div>
             <div class="terminal-prompt-wrapper">
                 <span class="prompt-text">></span>
@@ -42,27 +52,49 @@
 
     <div id="index-page" class="desktop-container" style="display: none;">
         <div class="icon-grid">
-            <a href="portfolio.html" class="icon-link icon-box">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
-                <span>Projects</span>
+
+   <a href="portfolio.html" class="icon-link icon-box" onclick="event.preventDefault(); showLoadingAndNavigate('portfolio.html');">
+    <img id="projects-icon" 
+         src="https://i.pinimg.com/736x/3a/74/f9/3a74f9b4f85e336ade4aac263dbf8480.jpg" 
+         alt="Projects Icon" 
+         class="projects-icon-img">
+    <span class="projects-label">Projects</span>
+</a>
+
+            
+            <a href="qualifications.html" class="icon-link icon-box" onclick="event.preventDefault(); showLoadingAndNavigate('qualifications.html');">
+                  <img id="qualifications-icon" 
+         src="https://i.pinimg.com/736x/9a/e2/86/9ae286aa11281a83fbda0e8dc3324c98.jpg" 
+         alt="qualifications-Icon" 
+         class="qualifications-Icon-img">
+    <span class="qualifications-label">Resume</span>
             </a>
-            <a href="qualifications.html" class="icon-link icon-box">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                <span>Resume</span>
-            </a>
-            <a href="service.html" class="icon-link icon-box">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.93-2.5l-2.8-2.82c-.07-.08-.13-.17-.2-.25V11c0-.55-.45-1-1-1H9v-.8c0-.49-.4-.9-1-1-.48 0-.88.39-.98.86-.54.26-1.01.59-1.42.94L3.8 8.16C5.2 5.63 8.24 4 12 4c4.41 0 8.04 2.86 9.4 6.83l-2.45-1.13c-.63 1.25-1.5 2.37-2.59 3.28z"/></svg>
-                <span>Service</span>
-            </a>
-            <a href="#" class="icon-link icon-box" onclick="triggerGenAI()">
+
+            <a href="service.html" class="icon-link icon-box" onclick="event.preventDefault(); showLoadingAndNavigate('service.html');">
+              <img id="service-icon" 
+         src="https://i.pinimg.com/736x/21/44/6b/21446ba8b6ed773beb340c39b568a1b2.jpg" 
+         alt="service Icon" 
+         class="service-icon-img">
+    <span class="service-label">Comunity Services</span>
+</a>
+
+            <a href="aboutme.html" class="icon-link icon-box" onclick="event.preventDefault(); showLoadingAndNavigate('aboutme.html');">
+        <img id="about-me-icon" 
+            src="https://i.pinimg.com/73x/09/ca/d4/09cad44c106550606d3a4a356d53ab35.jpg" 
+            alt="About Me Icon" 
+            class="about-me-icon-img">
+        <span class="about-me-label">About Me (Index)</span>
+    </a>
+
+            <a href="genai.html" class="icon-link icon-box" onclick="triggerGenAI()">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm0-4h-2V6h2v8z"/></svg>
                 <span>GenAI</span>
             </a>
-            <a href="https://github.com/your-github-username" target="_blank" class="icon-link icon-box">
+            <a href="https://github.com/CSCE331-Fall2025-900-911/project1-pavila1" target="_blank" class="icon-link icon-box">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.804 8.207 11.387.6.111.819-.258.819-.575 0-.285-.011-1.04-.017-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.332-1.756-1.332-1.756-1.089-.745.082-.729.082-.729 1.205.084 1.838 1.238 1.838 1.238 1.07 1.833 2.809 1.306 3.492.999.108-.775.419-1.306.762-1.605-2.665-.304-5.466-1.334-5.466-5.931 0-1.31.468-2.381 1.237-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.006-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.293-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.922.43.371.817 1.109.817 2.235 0 1.605-.015 2.899-.015 3.295 0 .319.219.694.825.572 4.766-1.581 8.2-6.084 8.2-11.386C24 5.373 18.627 0 12 0z"/></svg>
                 <span>GitHub</span>
             </a>
-            <a href="mailto:your_email@tamu.edu" target="_blank" class="icon-link icon-box">
+            <a href="mailto:pavila1@tamu.edu" target="_blank" class="icon-link icon-box">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
                 <span>Contact</span>
             </a>
@@ -72,10 +104,10 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 16.5c3.59 0 6.5-2.91 6.5-6.5S15.59 5.5 12 5.5 5.5 8.41 5.5 12c0 3.59 2.91 6.5 6.5 6.5z"/></svg>
                 <span>Toggle Style</span>
             </button>
-            <a href="#" class="icon-link icon-box" onclick="goBackToTerminal()">
-                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H4v-2h16v2zm0-4H4v-2h16v2zm0-4H4V7h16v2z"/></svg>
-                 <span>Back to Terminal</span>
-            </a>
+           <a href="index.html" class="icon-link icon-box" onclick="event.preventDefault(); showLoadingAndNavigate('index.html');">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H4v-2h16v2zm0-4H4v-2h16v2zm0-4H4V7h16v2z"/></svg>
+    <span>Back to Terminal</span>
+</a>
         </div>
     </div>
     <div id="genai-modal" class="modal">

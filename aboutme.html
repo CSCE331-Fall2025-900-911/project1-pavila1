@@ -9,17 +9,6 @@
       const savedStyle = sessionStorage.getItem("currentStyle") || "style2";
       document.write(`<link rel="stylesheet" href="${savedStyle}.css" id="theme-style">`);
     </script>
-    <style>
-        .pdf-container {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        .pdf-embed {
-            width: 100%;
-            height: 100%;
-        }
-    </style>
 </head>
 <body>
     <div id="loading-overlay" style="display: flex;">
@@ -40,7 +29,7 @@
             </div>
             <div class="address-bar">
                 <span>https://</span>
-                <input type="text" value="your-portfolio.com/qualifications.html" readonly>
+                <input type="text" value="your-Landingarea.com/index.html" readonly>
             </div>
             <div class="window-buttons">
                 <span class="window-btn minimize">_</span>
@@ -50,9 +39,7 @@
         </div>
         <div id="qualifications-page" class="page-container" style="display: flex;">
             <div class="page-content" style="padding: 0; display: flex; flex-direction: column;">
-                <div class="pdf-container">
-                    <embed src="Resume.pdf" type="application/pdf" class="pdf-embed"/>
-                </div>
+                
                  <div class="back-link-container">
     <a href="#" onclick="event.preventDefault(); showHomepage();" class="back-button">Back to Dashboard</a>
 </div>

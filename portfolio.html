@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paola Avila - Portfolio</title>
-    <link rel="stylesheet" href="style2.css">
+    <script>
+      // Apply theme before the page renders to prevent FOUC
+      const savedStyle = sessionStorage.getItem("currentStyle") || "style2";
+      document.write(`<link rel="stylesheet" href="${savedStyle}.css" id="theme-style">`);
+    </script>
 </head>
 <body>
+    <div id="loading-overlay" style="display: flex;">
+        <script>
+            const style = sessionStorage.getItem("currentStyle") || "style2";
+            const gifSrc = style === "style1" 
+                ? "https://i.pinimg.com/originals/05/bf/b1/05bfb13dbad7c8f3815c723d4c0c34be.gif" 
+                : "https://i.pinimg.com/originals/2a/2b/ce/2a2bce0f8c0efa1042428363bb4fa3d3.gif";
+            document.write(`<img src="${gifSrc}" id="loading-gif" alt="Loading GIF" class="loading-gif">`);
+        </script>
+    </div>
     <div id="browser-frame">
         <div class="browser-header">
             <div class="browser-controls">
@@ -26,50 +39,64 @@
         </div>
         <div id="portfolio-page" class="page-container" style="display: flex;">
             <div class="page-content">
-                <h1>My Technical Projects</h1>
-                
-                <p>Welcome to my technical portfolio. Here you'll find a collection of projects I've completed, demonstrating my skills in various areas of computer science and software development.</p>
-                
-                <p>The projects listed below are examples of my work. They highlight my ability to apply theoretical knowledge to practical problems and my proficiency in different programming languages and frameworks.</p>
+                <div class="top-text-container">
+                    <h1>My Technical Projects</h1>
+                    
+                   <p> Welcome to my portfolio! This is a showcase of my personal projects and also the school programs that I have completed in my academic years. These were fun and interesting concepts that I've studied and worked on during school!</p>
+                    <p> The projects listed below are examples of my work. They highlight my ability to apply theoretical knowledge to practical problems and my proficiency in different programming languages and frameworks.</p>
+                </div>
 
-                <div class="project-card">
-                    <h2>Project One: Web-Based Terminal Interface</h2>
-                    <p>This project is the very website you are viewing! It demonstrates proficiency in HTML, CSS, and JavaScript to create a unique and highly interactive user experience. It uses a command-line interface as its primary navigation, mimicking a retro terminal.
-                        <br><a href="https://github.com/your-github-username/project-one-repo" target="_blank">View on GitHub</a>
-                    </p>
+                <div class="project-card project-card-1">
+                    <img src="proj1.png" alt="Project Image" class="project-image">
+                    <div class="project-details">
+                        <h2>Project One: Flappy Bird Game</h2>
+                         <p>This is the Flappy Pastel Arcade, a fun, personalized recreation of the classic Flappy Bird game built using HTML, CSS, and JavaScript. Its unique style features a custom pastel color palette and uses cute emojis and a custom pixel-art image as flying avatars, all framed within a custom-designed handheld console interface.</p>
+                            <br><a href="https://github.com/Pavila20/cpp_projects/tree/main/Project1" target="_blank" class="github-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.804 8.207 11.387.6.111.819-.258.819-.575 0-.285-.011-1.04-.017-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.332-1.756-1.332-1.756-1.089-.745.082-.729.082-.729 1.205.084 1.838 1.238 1.838 1.238 1.07 1.833 2.809 1.306 3.492.999.108-.775.419-1.306.762-1.605-2.665-.304-5.466-1.334-5.466-5.931 0-1.31.468-2.381 1.237-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.006-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.293-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.922.43.371.817 1.109.817 2.235 0 1.605-.015 2.899-.015 3.295 0 .319.219.694.825.572 4.766-1.581 8.2-6.084 8.2-11.386C24 5.373 18.627 0 12 0z"/></svg>
+                            </a>
+                        </p>
+                    </div>
                 </div>
                 
-                <div class="project-card">
-                    <h2>Project Two: Data Visualization Tool</h2>
-                    <p>A tool built to visualize complex datasets. It uses JavaScript libraries to render interactive charts and graphs, allowing users to explore data trends and patterns. The project focuses on efficient data handling and a clean user interface.
-                        <br><a href="https://github.com/your-github-username/project-two-repo" target="_blank">View on GitHub</a>
-                    </p>
+                <div class="project-card project-card-2">
+                    <img src="https://miro.medium.com/v2/resize:fit:1400/1*Dyu63sMUVL-gYEZISOE2BQ.jpeg" alt="Project Image" class="project-image">
+                    <div class="project-details">
+                        <h2>Algorithms & DataStructures</h2>
+                        <p>A tool built to visualize complex datasets. It uses JavaScript libraries to render interactive charts and graphs, allowing users to explore data trends and patterns. The project focuses on efficient data handling and a clean user interface.
+                            <br><a href="https://github.com/Pavila20/cpp_projects/tree/main/Algorithm%20class" target="_blank" class="github-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.804 8.207 11.387.6.111.819-.258.819-.575 0-.285-.011-1.04-.017-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.332-1.756-1.332-1.756-1.089-.745.082-.729.082-.729 1.205.084 1.838 1.238 1.838 1.238 1.07 1.833 2.809 1.306 3.492.999.108-.775.419-1.306.762-1.605-2.665-.304-5.466-1.334-5.466-5.931 0-1.31.468-2.381 1.237-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.006-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.293-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.922.43.371.817 1.109.817 2.235 0 1.605-.015 2.899-.015 3.295 0 .319.219.694.825.572 4.766-1.581 8.2-6.084 8.2-11.386C24 5.373 18.627 0 12 0z"/></svg>
+                            </a>
+                        </p>
+                    </div>
                 </div>
 
-                <div class="project-card">
-                    <h2>Project Three: ECEN Digital Logic Project</h2>
-                    <p>A project from my ECEN class focused on implementing digital logic circuits. It involved using hardware description languages and simulation tools to design and test a functional circuit. This project strengthened my understanding of low-level hardware design principles.
-                        <br><a href="https://github.com/your-github-username/ecen-project" target="_blank">View on GitHub</a>
-                    </p>
+                <div class="project-card project-card-3">
+                    <img src="Screenshot 2025-09-27 192414.png" alt="Project Image" class="project-image">
+                    <div class="project-details">
+                        <h2>Project Three: ECEN Digital Logic Project</h2>
+                        <p>A project from my ECEN class focused on implementing digital logic circuits. It involved using hardware description languages and simulation tools to design and test a functional circuit. This project strengthened my understanding of low-level hardware design principles.
+                            <br><a href="https://github.com/Pavila20/cpp_projects/tree/main/ECEN-248" target="_blank" class="github-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.804 8.207 11.387.6.111.819-.258.819-.575 0-.285-.011-1.04-.017-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.332-1.756-1.332-1.756-1.089-.745.082-.729.082-.729 1.205.084 1.838 1.238 1.838 1.238 1.07 1.833 2.809 1.306 3.492.999.108-.775.419-1.306.762-1.605-2.665-.304-5.466-1.334-5.466-5.931 0-1.31.468-2.381 1.237-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.006-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.293-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.922.43.371.817 1.109.817 2.235 0 1.605-.015 2.899-.015 3.295 0 .319.219.694.825.572 4.766-1.581 8.2-6.084 8.2-11.386C24 5.373 18.627 0 12 0z"/></svg>
+                            </a>
+                        </p>
+                    </div>
                 </div>
 
-                <div class="project-card">
-                    <h2>Project Four: CSC Fun Project</h2>
-                    <p>A computer science project that allowed me to explore a topic of personal interest. It involved developing a small application using a new programming language and demonstrating my ability to learn new technologies quickly and apply them to a creative problem.
-                        <br><a href="https://github.com/your-github-username/csc-fun-project" target="_blank">View on GitHub</a>
-                    </p>
-                </div>
-
-                <div class="project-card">
-                    <h2>Project Five: Interactive Game Development</h2>
-                    <p>An interactive game created using front-end web technologies. This project showcases my skills in game logic, state management, and user interaction, providing an an engaging experience for the player.
-                        <br><a href="https://github.com/your-github-username/interactive-game" target="_blank">View on GitHub</a>
-                    </p>
+                <div class="project-card project-card-4">
+                    <img src="Screenshot 2025-09-27 214611.png" alt="Project Image" class="project-image">
+                    <div class="project-details">
+                        <h2>Project Four: Falling Stars</h2>
+                        <p>A personal project where I created a simple game called Falling Stars where the user gets to play an interactive game where the user has to catch falling stars and beat there hight score.
+                            <br><a href="https://github.com/Pavila20/cpp_projects/tree/main/Project2" target="_blank" class="github-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.804 8.207 11.387.6.111.819-.258.819-.575 0-.285-.011-1.04-.017-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.332-1.756-1.332-1.756-1.089-.745.082-.729.082-.729 1.205.084 1.838 1.238 1.838 1.238 1.07 1.833 2.809 1.306 3.492.999.108-.775.419-1.306.762-1.605-2.665-.304-5.466-1.334-5.466-5.931 0-1.31.468-2.381 1.237-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.006-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.293-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.922.43.371.817 1.109.817 2.235 0 1.605-.015 2.899-.015 3.295 0 .319.219.694.825.572 4.766-1.581 8.2-6.084 8.2-11.386C24 5.373 18.627 0 12 0z"/></svg>
+                            </a>
+                        </p>
+                    </div>
                 </div>
                 
                 <div class="back-link-container">
-                    <button class="back-link" onclick="window.location.href='index.html'">Back to Homepage</button>
-                </div>
+    <a href="#" onclick="event.preventDefault(); showHomepage();" class="back-button">Back to Dashboard</a>
+</div>
             </div>
         </div>
     </div>

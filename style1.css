@@ -1,6 +1,6 @@
 /* --- THE ALMIGHTY COLOR PALETTE --- */
 :root {
-    --bg-main: #f8f9fc;
+    --bg-main: #ffffff;
     --terminal-bg: rgba(255, 255, 255, 0.6);
     --header-bg: #fdeef5;
     --text-main: #2a334a;
@@ -18,7 +18,7 @@
     --address-bar-bg: #ffffff;
     --window-btn-color: #6a6a6a;
 }
-/* --- LIGHT THEME COLOR PALETTE (Style 2) --- */
+/* --- LIGHT THEME COLOR PALETTE (Style 1) --- */
 :root.light-theme {
     --bg-main: #ffffff;
     --terminal-bg: rgba(255, 255, 255, 0.8);
@@ -55,7 +55,7 @@ body {
 .desktop-container {
     width: 100%;
     height: 100vh;
-    background-image: url('https://i.pinimg.com/736x/01/55/b4/0155b47ad84c87b4e3377466e5503032.jpg');
+    background-image: url('https://i.pinimg.com/1200x/d4/3e/bf/d43ebfa409811417b05e621e199699f2.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -76,8 +76,12 @@ body {
     color: white;
 }
 .typed-command {
-    color: yellow;
+    color: cyan;
 }
+
+
+
+
 .icon-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -106,15 +110,15 @@ body {
 }
 
 
-
-
 .bottom-controls {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4.5rem;
-    margin-top: 4rem;
+    margin-top: 5rem;
 }
+
+
 .light-theme .icon-grid {
     background: none;
     border: none;
@@ -131,7 +135,7 @@ body {
     transition: transform 0.2s ease-in-out, color 0.5s ease;
 }
 .icon-box {
-    padding: 1.0rem;
+    padding: 1.5rem;
     border-radius: 0.75rem;
     background-color: rgba(255, 255, 255, 0.15);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -235,7 +239,7 @@ body {
     overflow: hidden;
 }
 .browser-header {
-    background-color: var(--browser-header-bg);
+    background-color: rgb(50, 122, 113);
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
@@ -285,7 +289,7 @@ body {
     width: 100%;
     max-width: 56rem;
     height: 80vh;
-    background-color: var(--terminal-bg);
+    background-color: rgb(211, 248, 253);
     border-radius: 0.5rem;
     box-shadow: 0 25px 50px -12px var(--shadow-color);
     border: 1px solid var(--border-color);
@@ -344,7 +348,6 @@ body {
     margin-bottom: 1rem;
     line-height: 1.6;
 }
-/* Add to both style1.css and style2.css */
 .back-link-container {
     text-align: center;
     margin-top: 2rem;
@@ -371,17 +374,6 @@ body {
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-.light-theme .back-button {
-    border-color: var(--text-pink);
-}
-.page-content a {
-    color: var(--text-pink);
-    text-decoration: underline;
-    font-weight: bold;
-}
-
-/* Add to the top of the file, or anywhere else that's logical */
-
 .top-text-container {
     background-color: rgba(255, 255, 255, 0.75);
     padding: 2.5rem;
@@ -393,7 +385,7 @@ body {
 
 .top-text-container h1 {
     font-size: 2.5rem;
-    color: var(--text-purple);
+    color: "var(--text-purple)";
     margin-top: 0;
     margin-bottom: 0.5rem;
     letter-spacing: 0.1rem;
@@ -407,9 +399,13 @@ body {
     max-width: 800px;
     margin: 0.5rem auto;
 }
-/* New styles for project cards */
+.page-content a {
+    color: var(--text-pink);
+    text-decoration: underline;
+    font-weight: bold;
+}
 .project-card {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(214, 17, 17, 0.8);
     background-size: cover;
     background-position: center;
     border-radius: 0.5rem;
@@ -429,23 +425,23 @@ body {
 }
 
 .project-card-1 {
-    background-image: url('https://i.pinimg.com/1200x/23/70/cf/2370cf5032ef23c28ccc3b5025c5e69c.jpg');
+    background-image: url('https://i.pinimg.com/1200x/c1/ab/a1/c1aba1748ac4dc5d6ccc0d2c12cacb91.jpg');
 }
 
 .project-card-2 {
-    background-image: url('https://i.pinimg.com/1200x/00/bf/fe/00bffeeda08225e86a6f51490fce6247.jpg');
+    background-image: url('https://i.pinimg.com/1200x/10/45/e3/1045e3f5a0445b86444d0cecd21767c2.jpg');
 }
 
 .project-card-3 {
-    background-image: url('https://i.pinimg.com/1200x/fa/3f/5a/fa3f5a4d3dc3c132aba88324b5e3bfb2.jpg');
+    background-image: url('https://i.pinimg.com/736x/47/40/69/474069bcf213b212ccff54992de7c73a.jpg');
 }
 
 .project-card-4 {
-    background-image: url('https://i.pinimg.com/736x/d7/5d/36/d75d36247fef0d617495e2c7b9ad5969.jpg');
+    background-image: url('https://i.pinimg.com/1200x/4c/99/b1/4c99b1cbec0bab57b033057ff38534bc.jpg');
 }
 
 .project-card-5 {
-    background-image: url('https://i.pinimg.com/1200x/47/04/5f/47045f4d62b648638bf199f2ca3489da.jpg');
+    background-image: url('https://i.pinimg.com/1200x/59/fc/2f/59fc2f4c00cefa7008a33650005d3c80.jpg');
 }
 
 .project-image {
@@ -463,7 +459,7 @@ body {
 }
 
 .project-details h2 {
-    color: darkorchid;
+    color: red;
     font-weight: bold;
     font-size: 1.5rem;
     margin: 0rem; /* Adjust margin for new layout */
@@ -473,11 +469,10 @@ body {
 .project-details p {
     margin: 0;
     font-weight: bold;
-    color: black;
+    color: rgb(190, 30, 30);
     font-size: 18px;
     line-height: 1.6;
 }
-
 .github-link {
     display: inline-flex;
     align-items: center;
@@ -511,7 +506,7 @@ body {
     flex-direction: column;
     padding: 1.5rem;
     overflow: hidden;
-    background-image: url('https://i.pinimg.com/originals/8e/55/40/8e55405f83edb57e51ffe4bb190d29e0.gif');
+    background-image: url('https://i.pinimg.com/originals/74/6b/40/746b4019b89842bf5b6eb016a7964115.gif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -540,7 +535,7 @@ body {
 .welcome-message-text {
     font-size: 1.25rem;
     font-weight: bold;
-    color: var(--text-purple);
+    color: rgb(255, 230, 0);
     margin-bottom: 1rem;
     text-align: center;
 }
@@ -611,7 +606,7 @@ body {
 }
 .loading-gif {
     width: 150px;
-    height: 150px;
+    height: auto; 
     border-radius: 5px;
 }
 .about-me-icon-img {
@@ -640,14 +635,15 @@ body {
   margin-top: 8px;
   font-size: 14px;
   font-weight: bold;
-  color: rgb(0, 0, 0);
+  color: rgb(9, 177, 255);
   text-align: center;
 }
+
 .service-icon-img {
   width: 50%;
   height: 90%;
   object-fit: cover;
-  border-radius: 12px; /* optional rounded corners */
+  border-radius: 10px; /* optional rounded corners */
   border: 2px solid white; /* optional */
 }
 
@@ -656,7 +652,7 @@ body {
   margin-top: 8px;
   font-size: 14px;
   font-weight: bold;
-  color: rgb(0, 0, 0);
+  color: rgb(22, 104, 255);
   text-align: center;
 }
 .about-me-label {
@@ -664,9 +660,10 @@ body {
   margin-top: 8px;
   font-size: 14px;
   font-weight: bold;
-  color: rgb(0, 0, 0);
+  color: rgb(2, 103, 255);
   text-align: center;
 }
+
 .qualifications-Icon-img {
   width: 50%;
   height: 90%;
@@ -680,6 +677,6 @@ body {
   margin-top: 8px;
   font-size: 14px;
   font-weight: bold;
-  color: rgb(10, 10, 10);
+  color: rgb(22, 104, 255);
   text-align: center;
 }

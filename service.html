@@ -3,10 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paola Avila - Service</title>
-    <link rel="stylesheet" href="style2.css">
+    <title>Paola Avila - Qualifications</title>
+    <script>
+      // Apply theme before the page renders to prevent FOUC
+      const savedStyle = sessionStorage.getItem("currentStyle") || "style2";
+      document.write(`<link rel="stylesheet" href="${savedStyle}.css" id="theme-style">`);
+    </script>
 </head>
 <body>
+    <div id="loading-overlay" style="display: flex;">
+        <script>
+            const style = sessionStorage.getItem("currentStyle") || "style2";
+            const gifSrc = style === "style1" 
+                ? "https://i.pinimg.com/originals/05/bf/b1/05bfb13dbad7c8f3815c723d4c0c34be.gif" 
+                : "https://i.pinimg.com/originals/2a/2b/ce/2a2bce0f8c0efa1042428363bb4fa3d3.gif";
+            document.write(`<img src="${gifSrc}" id="loading-gif" alt="Loading GIF" class="loading-gif">`);
+        </script>
+    </div>
     <div id="browser-frame">
         <div class="browser-header">
             <div class="browser-controls">
@@ -16,7 +29,7 @@
             </div>
             <div class="address-bar">
                 <span>https://</span>
-                <input type="text" value="your-portfolio.com/service.html" readonly>
+                <input type="text" value="About-Me-&-Services/qualifications.html" readonly>
             </div>
             <div class="window-buttons">
                 <span class="window-btn minimize">_</span>
@@ -24,18 +37,112 @@
                 <span class="window-btn close">X</span>
             </div>
         </div>
-        <div id="service-page" class="page-container">
-            <div class="page-content">
-                <h1>Community Service & Mentoring</h1>
-                <p>This page highlights my commitment to giving back to the community and helping others learn and grow. I believe that service is an essential part of being a well-rounded professional.</p>
-                <h2>Volunteering</h2>
-                <p>I have volunteered with several local organizations, assisting with community outreach programs and educational events. These experiences have allowed me to apply my skills in a non-profit setting and contribute to causes I care about.</p>
-                <h2>Mentoring</h2>
-                <p>I enjoy mentoring students and peers, offering guidance on coding projects, career paths, and technical challenges. I am passionate about sharing my knowledge and helping others succeed in their computer science journey.</p>
-                <div class="back-link-container">
-                    <button class="back-link" onclick="window.location.href='index.html'">Back to Homepage</button>
+        <div id="qualifications-page" class="page-container" style="display: flex;">
+            <div class="page-content" style="padding: 0; display: flex; flex-direction: column;">
+                
+               
+
+                <main class="qualifications-main">
+                    <h1>Hello! I'm Paola Avila.</h1>
+                    
+                    <section class="intro-section">
+                        <div class="profile-image-container">
+                            <img src="/assets/images/paola-profile.jpg" alt="Paola Avila Profile" class="profile-image">
+                            <p class="image-caption">That's me, solving one problem at a time. 💻</p>
+                        </div>
+                        <div class="bio-text">
+                            <h2>My Engineering Passion & Journey</h2>
+                            <p>
+                                My journey into engineering wasn't a straight line, but at the end of the day, I found my calling with **computers**, and I really do enjoy it. It all came about from a curiosity about **how the world works**, and I really want to learn more about how technological advancements interlace with us, more like in a theoretical way of computers, as I've always been fascinated by them. 
+                            </p>
+                            <p>
+                                For me, engineering is the perfect way to **express myself** and to really **challenge myself** with complex problems and the developing world as we speak. This major provides the ideal mix of logic and creativity that keeps me passionate and engaged every day.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <hr>
+
+                    <section class="tech-languages">
+                        <h2>Tech Languages I Recommend & Use</h2>
+                        <p>Oh, yes! If you're looking to start your journey, you should really look into these amazing concepts as I as well have to explore them for my education. If you would like to start, click on any icon for a useful resource!</p>
+                        <div class="language-icons-grid">
+                            <a href="https://www.python.org/" target="_blank" class="lang-icon-link">
+                                <img src="/assets/icons/python-icon.png" alt="Python Icon" class="lang-icon">
+                                <span>Python</span>
+                            </a>
+                            <a href="https://cplusplus.com/" target="_blank" class="lang-icon-link">
+                                <img src="/assets/icons/cpp-icon.png" alt="C++ Icon" class="lang-icon">
+                                <span>C++</span>
+                            </a>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="lang-icon-link">
+                                <img src="/assets/icons/js-icon.png" alt="JavaScript Icon" class="lang-icon">
+                                <span>JavaScript</span>
+                            </a>
+                            <a href="https://www.w3schools.com/html/" target="_blank" class="lang-icon-link">
+                                <img src="/assets/icons/html-css-icon.png" alt="HTML/CSS Icon" class="lang-icon">
+                                <span>HTML & CSS</span>
+                            </a>
+                            <a href="https://www.w3schools.com/sql/" target="_blank" class="lang-icon-link">
+                                <img src="/assets/icons/sql-icon.png" alt="SQL Icon" class="lang-icon">
+                                <span>SQL</span>
+                            </a>
+                        </div>
+                    </section>
+
+                    <hr>
+
+                    <section class="hobbies-food-section">
+                        <h2>Beyond the Terminal: Hobbies & Foodie Adventures</h2>
+                        
+                        <div class="hobbies-and-food-container">
+                            <div class="hobbies-list">
+                                <h3>Amazing Things I Enjoy (When Not Coding)</h3>
+                                <ul>
+                                    <li>I love to **watch anime** and explore different worlds through storytelling.</li>
+                                    <li>I love to **take pictures in nature**, capturing the beauty away from the screen.</li>
+                                    <li>I like to go to the **gym** to stay active and clear my head.</li>
+                                    <li>I also like **video games** such as *Call of Duty*, *Apex*, *Minecraft*, and *Roblox*.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="food-gallery">
+                                <h3>Fuel for the Brain: Favorite Food Spots</h3>
+                                <p>A great meal is the key to a great solution. Here are a few things I enjoy:</p>
+                                <div class="food-images-container">
+                                    <div class="food-spot">
+                                        <img src="/assets/images/ramen-spot.jpg" alt="Image of a bowl of Ramen">
+                                        <p>I love **ramen**! Best comfort food for late-night sessions.</p>
+                                    </div>
+                                    <div class="food-spot">
+                                        <img src="/assets/images/coffee-shop.jpg" alt="Image of a cozy coffee shop interior">
+                                        <p>I also love my daily run of **energy drinks and coffees**. They're essential!</p>
+                                    </div>
+                                    <div class="food-spot">
+                                        <img src="/assets/images/taco-truck.jpg" alt="Image of tacos from a food truck">
+                                        <p>And of course, I love **tacos**. They fix everything, and then some. Etc.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <hr>
+
+                    <section class="services-and-beyond">
+                        <h2>Services & Beyond: My Future Vision </h2>
+                        <p>
+                            Looking ahead, my ultimate goal is to move beyond conventional development and implement technological advancements that truly **better our world**. I want to use my engineering skills to develop systems that make the world more **ecological**, finding innovative ways to apply technology to sustainability and resource management. This includes building better ideas in diverse areas like **medical technology** (advancing patient care through AI/ML), **informational systems** (improving access to knowledge), and **public safety**. My aspiration is to be a part of the movement that utilizes cutting-edge technology to solve humanity's most complex challenges and secure a more advanced future for everyone.
+                        </p>
+                    </section>
+                    
+                    <hr>
+                    
+                    <div class="back-link-container bottom-button-container" style="text-align: center; margin-bottom: 90px;">
+                        <a href="#" onclick="event.preventDefault(); showHomepage();" class="back-button">Back to Home Dashboard</a>
+                    </div>
+                    </main>
                 </div>
-            </div>
         </div>
     </div>
     <script src="script.js"></script>
