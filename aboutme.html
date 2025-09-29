@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paola Avila - Qualifications</title>
+    <title>Paola Avila - About Me</title>
     <script>
       // Apply theme before the page renders to prevent FOUC
       const savedStyle = sessionStorage.getItem("currentStyle") || "style2";
@@ -13,6 +13,7 @@
 <body>
     <div id="loading-overlay" style="display: flex;">
         <script>
+            // Logic to select the correct loading GIF based on saved style
             const style = sessionStorage.getItem("currentStyle") || "style2";
             const gifSrc = style === "style1" 
                 ? "https://i.pinimg.com/originals/05/bf/b1/05bfb13dbad7c8f3815c723d4c0c34be.gif" 
@@ -29,7 +30,7 @@
             </div>
             <div class="address-bar">
                 <span>https://</span>
-                <input type="text" value="your-Landingarea.com/index.html" readonly>
+                <input type="text" value="your-Landingarea.com/aboutme.html" readonly>
             </div>
             <div class="window-buttons">
                 <span class="window-btn minimize">_</span>
@@ -37,15 +38,121 @@
                 <span class="window-btn close">X</span>
             </div>
         </div>
-        <div id="qualifications-page" class="page-container" style="display: flex;">
-            <div class="page-content" style="padding: 0; display: flex; flex-direction: column;">
+        
+        <div id="Aboutme-page" class="page-container" style="display: flex;">
+            <div class="page-content" style="padding: 1.5rem; display: flex; flex-direction: column;">
+                <div class="top-text-container">
+                    <h1 style="min-height: 40px; text-align: center;">
+                        <span id="typing-greeting"></span>
+                    </h1>
+    
+                    <img src="unnamed10.jpg" alt="Paola Avila - Professional Headshot" style="max-width: 250px; border-radius: 10px; margin: 20px auto; display: block;">
+
+                    <p>I am a proud first-generation Latina in my senior year of Computer Engineering. My journey has been shaped by resilience, curiosity, and a deep commitment to breaking barriers. As I approach graduation, I'm excited to share more about myself, my experiences, and the passions that drive me both inside and outside of technology.</p>
+                </div>
+
+                <h2>Interactive Technical Stack</h2>
+                <p>Click on any icon to learn more about the technology:</p>
                 
-                 <div class="back-link-container">
+                <div class="tech-stack-icon-grid">
+                    
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="tech-icon-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" alt="JavaScript" class="tech-icon-img">
+                        <span class="tech-label">JavaScript</span>
+                    </a>
+                    
+                    <a href="https://www.python.org/doc/" target="_blank" class="tech-icon-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" class="tech-icon-img">
+                        <span class="tech-label">Python</span>
+                    </a>
+                    
+                    <a href="https://en.cppreference.com/w/cpp/language" target="_blank" class="tech-icon-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++" class="tech-icon-img">
+                        <span class="tech-label">C++</span>
+                    </a>
+                    
+                    <a href="https://nodejs.org/en/docs" target="_blank" class="tech-icon-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js" class="tech-icon-img">
+                        <span class="tech-label">Node.js</span>
+                    </a>
+
+                    <a href="https://git-scm.com/doc" target="_blank" class="tech-icon-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg" alt="Git" class="tech-icon-img">
+                        <span class="tech-label">Git</span>
+                    </a>
+                    
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" class="tech-icon-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML5" class="tech-icon-img">
+                        <span class="tech-label">HTML5</span>
+                    </a>
+                    
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="tech-icon-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS3" class="tech-icon-img">
+                        <span class="tech-label">CSS3</span>
+                    </a>
+                    
+                    <a href="https://react.dev/" target="_blank" class="tech-icon-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React" class="tech-icon-img">
+                        <span class="tech-label">React</span>
+                    </a>
+                    </div>
+
+                <h2>Why I'm a Great Fit for Your Team</h2>
+                <p>I believe that code is written for people first, then for machines. This philosophy drives me to focus on clear, maintainable code and crystal-clear communication. I thrive in collaborative environments where I can mentor peers and contribute to a positive, growth-focused culture.</p>
+                
+                
+                <h2 style="margin-top: 3rem;">Beyond the Screen: My World, My Passions </h2>
+                <p>While coding fuels my mind, life's richer experiences truly nourish my soul. Here’s a peek into what makes me, me!</p>
+
+               <h3>My Culinary Adventures 🍔</h3>
+<p>Food isn't just sustenance; it's an exploration! Here are a few of my absolute favorites:</p>
+
+<div class="food-spotlight-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png" alt="McDonald's Logo" class="food-image">
+    <div class="food-details">
+        <h3>McDonald's: The Ultimate Comfort Stop</h3>
+        <p>Don't judge a book by its golden arches! My go-to is the McChicken sandwich. There’s something about that crispy patty, fresh lettuce, and just-right mayo on a toasted bun. It’s a classic for a reason—a quick, satisfying treat whenever you need it most!</p>
+        <a href="https://www.google.com/maps/search/McDonald's+near+me" target="_blank">Find Nearby Restaurants</a>
+    </div>
+</div>
+
+<div class="food-spotlight-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Ramyun_cooking_image.png" alt="Bowl of Ramen" class="food-image">
+    <div class="food-details">
+        <h3>Ramen: A Bowl of Pure Joy</h3>
+        <p>There’s something irresistibly comforting about a steaming bowl of Ramen. The rich, savory tonkotsu broth warms you from the inside out, while the springy noodles, tender chashu pork, and velvety soft-boiled egg create a harmony of textures and flavors. Every bite is a small, delicious escape—pure comfort in a bowl.</p>
+        <a href="https://www.google.com/maps/search/Ramen+restaurants+near+me" target="_blank">Find Nearby Restaurants</a>
+    </div>
+</div>
+
+<div class="food-spotlight-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Sushi_platter.jpg/330px-Sushi_platter.jpg" alt="Sushi Platter" class="food-image">
+    <div class="food-details">
+        <h3>Sushi: Art on a Plate</h3>
+        <p>Whenever I’m in the mood for something fresh and beautifully crafted, sushi is always my go-to. The perfect harmony of seasoned rice, fresh fish, and just the right hint of wasabi and soy sauce feels like pure bliss. Every bite is not just food, but an experience that awakens the taste buds and soothes the soul.</p>
+        <a href="https://www.google.com/maps/search/Sushi+restaurants+near+me" target="_blank">Find Nearby Restaurants</a>
+    </div>
+</div>
+
+
+                <h3>My Hobbies & Creative Outlets</h3>
+<p>I really love digging into a bunch of passions beyond coding! Here are some of the things that keep me busy and inspired:</p>
+
+<ul>
+    <li>Gaming: Call of Duty, Apex Legends, Minecraft — building, competing, and having fun online.</li>
+    <li>Custom Keyboard & Gaming Rig Design: Obsessed with tactile switches and optimizing every detail for the perfect setup.</li>
+    <li>Gardening: Growing plants and experimenting with green spaces around my home.</li>
+    <li>Drawing: Bringing my favorite characters and creative ideas to life on paper.</li>
+    <li>Anime & Movies: Watching anime series and films of all kinds I personaly really enjoy Naruto.</li>
+    <li>Cooking: I really enjoy my time cooking and exploring new recipies</li>
+</ul>
+
+<div class="back-link-container">
     <a href="#" onclick="event.preventDefault(); showHomepage();" class="back-button">Back to Dashboard</a>
 </div>
-            </div>
+
         </div>
-    </div>
+        </div>
     <script src="script.js"></script>
 </body>
 </html>

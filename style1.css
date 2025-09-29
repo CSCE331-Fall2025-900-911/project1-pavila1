@@ -785,3 +785,215 @@ body {
 .community-link-box:hover .community-label {
   color: var(--text-pink);
 }
+/* Add this to style1.css and style2.css */
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+#typing-greeting {
+    display: inline-block;
+    /* Apply the blink animation to the border used as a cursor */
+    animation: blink 0.75s step-end infinite; 
+    /* Ensures the space is reserved even before text is typed */
+    min-width: 1ch; 
+    min-height: 1em; 
+}
+
+
+
+
+/* --- TECH STACK ICON GRID STYLING --- */
+
+.tech-stack-icon-grid {
+    display: grid;
+    /* Create 4 columns, adjusting for smaller screens later */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 1.5rem; /* Space between icons */
+    padding: 1.5rem;
+    margin: 1rem auto 2.5rem;
+    max-width: 90%;
+    border-radius: 1rem;
+    background-color: var(--header-bg); /* Keeping this for the container background */
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.tech-icon-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    padding: 1.25rem 0.5rem; /* Increased padding for more space inside the box */
+    border-radius: 0.75rem;
+    /* --- MODIFICATION START --- */
+    background-color: var(--blue-box-background, #e0f2f7); /* Light blue background */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease, background-color 0.2s ease;
+    border: 1px solid var(--blue-box-border, #a7d9ed); /* Blue border */
+    /* --- MODIFICATION END --- */
+    cursor: pointer;
+}
+
+.tech-icon-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px var(--shadow-color);
+    /* --- MODIFICATION START --- */
+    background-color: var(--blue-box-hover, #c1e4f2); /* Slightly darker blue on hover */
+    /* --- MODIFICATION END --- */
+}
+
+.tech-icon-img {
+    width: 60px; /* Increased icon size */
+    height: 60px; /* Increased icon size */
+    object-fit: contain;
+    margin-bottom: 0.75rem; /* Increased space below icon */
+    transition: transform 0.2s ease;
+}
+
+.tech-icon-link:hover .tech-icon-img {
+    transform: scale(1.1);
+}
+
+.tech-label {
+    font-size: 0.9rem; /* Slightly larger label */
+    font-weight: bold;
+    /* --- MODIFICATION START --- */
+    color: var(--blue-text-color, #000000); /* Blue text color */
+    /* --- MODIFICATION END --- */
+    transition: color 0.2s ease;
+}
+
+.tech-icon-link:hover .tech-label {
+    /* --- MODIFICATION START --- */
+    color: var(--blue-text-hover-color, #3991ef); /* Darker blue on hover */
+    /* --- MODIFICATION END --- */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .tech-stack-icon-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns on tablets */
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tech-stack-icon-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on phones */
+    }
+}
+
+/* Ensure the typing effect CSS is also present in style2.css */
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+#typing-greeting {
+    display: inline-block;
+    animation: blink 0.75s step-end infinite; 
+    min-width: 1ch; 
+    min-height: 1em; 
+}
+
+/* ======================================= */
+/* --- New CSS for About Me Content --- */
+/* ======================================= */
+
+/* --- Food Spotlight Cards --- */
+.food-spotlight-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: #ffffff; /* SET TO PURE WHITE */
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.food-spotlight-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.food-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+    border: 2px solid var(--border-color);
+    background-color: white; 
+    padding: 5px; 
+}
+
+.food-details h3 {
+    color: var(--text-purple); /* Uses your theme's purple color */
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.food-details p {
+    color: var(--text-main);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* --- Engineering Reflection Card (Callout) --- */
+.engineering-reflection-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    /* Uses your theme colors for a vibrant gradient background */
+    background: linear-gradient(145deg, var(--text-pink) 10%, var(--text-purple) 90%); 
+    color: #ffffff; 
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    margin: 3rem auto;
+    max-width: 700px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.reflection-icon {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2)); 
+}
+
+.reflection-text h2 {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.reflection-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    max-width: 600px;
+    opacity: 0.95;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .food-spotlight-card {
+        flex-direction: column; /* Stacks image and text vertically on small screens */
+        text-align: center;
+    }
+    .food-image {
+        margin-bottom: 1rem;
+    }
+    .engineering-reflection-card {
+        padding: 1.5rem;
+        margin: 2rem auto;
+    }
+}
