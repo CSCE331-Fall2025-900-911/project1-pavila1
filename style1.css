@@ -169,10 +169,10 @@ body {
     fill: #fff;
 }
 #toggle-style-btn {
-    background-color: transparent;
+    background-color: rgb(0, 85, 255);
     border: none;
     font-family: inherit;
-    color: inherit;
+    color: white;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -183,6 +183,7 @@ body {
     gap: 0.5rem;
     transition: transform 0.2s ease-in-out, color 0.5s ease;
 }
+
 .icon-toggle-btn {
     display: flex;
     flex-direction: row;
@@ -353,7 +354,7 @@ body {
     margin-top: 2rem;
 }
 .back-button {
-    background-color: var(--header-bg); /* Use a light, theme-consistent background */
+    background-color: transparent; 
     color: var(--text-main); /* Change default text color to a darker, visible color */
     text-decoration: none;
     font-weight: bold;
@@ -368,8 +369,8 @@ body {
 
 .back-button:hover {
     background-color: transparent;
-    color: var(--text-pink); /* Keep the hover color as pink for a fun effect */
-    border-color: var(--text-pink); /* Change border color on hover */
+    color: black; /* Keep the hover color as pink for a fun effect */
+    border-color: black; /* Change border color on hover */
     transform: translateY(-3px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
@@ -895,7 +896,9 @@ body {
     min-height: 1em; 
 }
 
-
+/* ======================================= */
+/* --- New CSS for About Me Content --- */
+/* ======================================= */
 
 /* --- Food Spotlight Cards --- */
 .food-spotlight-card {
@@ -995,4 +998,3 @@ body {
         margin: 2rem auto;
     }
 }
-

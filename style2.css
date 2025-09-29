@@ -165,10 +165,10 @@ body {
     fill: #fff;
 }
 #toggle-style-btn {
-    background-color: transparent;
+    background-color: red;
     border: none;
     font-family: inherit;
-    color: inherit;
+    color: white;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -996,4 +996,3 @@ body {
         margin: 2rem auto;
     }
 }
-
