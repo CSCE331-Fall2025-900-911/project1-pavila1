@@ -3,49 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paola Avila - Qualifications</title>
-    <script>
-      // Apply theme before the page renders to prevent FOUC
-      const savedStyle = sessionStorage.getItem("currentStyle") || "style2";
-      document.write(`<link rel="stylesheet" href="${savedStyle}.css" id="theme-style">`);
-    </script>
+    <title>Generative AI Capabilities Showcase</title>
+    <style>
+        /* Internal CSS for the entire page, adhering to the AI-generated styling constraint */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1f1f1f 0%, #0a0a0a 100%);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #2a2a2a;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid #00ff66; /* Neon accent */
+            margin-bottom: 30px;
+        }
+        header h1 {
+            color: #00ff66;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+        }
+        .section {
+            background-color: #1a1a1a;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        .section h2 {
+            color: #00ff66; /* Neon green titles */
+            font-size: 2rem;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .code-box {
+            background-color: #0d0d0d;
+            border: 1px solid #333;
+            border-left: 5px solid #00ff66;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Consolas', monospace;
+            white-space: pre-wrap;
+            color: #e6e6e6;
+        }
+        /* New Acknowledgement Styling */
+        .ai-acknowledgement {
+            background-color: #333333; /* Darker gray background */
+            color: #ffffff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border: 1px solid #00ff66; /* Neon accent border */
+            text-align: center;
+        }
+        .ai-acknowledgement strong {
+            color: #00ff66;
+        }
+        /* Styling for the prompt text box */
+        .prompt-container {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed #00ff66;
+            margin-top: 40px;
+        }
+        .prompt-container label {
+            display: block;
+            color: #00ff66;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            border: 1px solid #444;
+            border-radius: 5px;
+            resize: none;
+            font-family: 'Consolas', monospace;
+            font-size: 0.95rem;
+            overflow-y: scroll; /* Ensures scrollbar for lengthy content */
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            border-top: 1px solid #333;
+            color: #888;
+        }
+        .back-button {
+            display: inline-block;
+            background-color: #00ff66;
+            color: #1a1a1a;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background-color: #00e65c;
+            transform: scale(1.05);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="loading-overlay" style="display: flex;">
-        <script>
-            const style = sessionStorage.getItem("currentStyle") || "style2";
-            const gifSrc = style === "style1" 
-                ? "https://i.pinimg.com/originals/05/bf/b1/05bfb13dbad7c8f3815c723d4c0c34be.gif" 
-                : "https://i.pinimg.com/originals/2a/2b/ce/2a2bce0f8c0efa1042428363bb4fa3d3.gif";
-            document.write(`<img src="${gifSrc}" id="loading-gif" alt="Loading GIF" class="loading-gif">`);
-        </script>
-    </div>
-    <div id="browser-frame">
-        <div class="browser-header">
-            <div class="browser-controls">
-                <div class="dot red"></div>
-                <div class="dot yellow"></div>
-                <div class="dot green"></div>
-            </div>
-            <div class="address-bar">
-                <span>https://</span>
-                <input type="text" value="your-portfolio.com/qualifications.html" readonly>
-            </div>
-            <div class="window-buttons">
-                <span class="window-btn minimize">_</span>
-                <span class="window-btn maximize">❤️</span>
-                <span class="window-btn close">X</span>
+    <div class="container">
+        <header>
+            <h1>The Power of Generative AI 🧠✨</h1>
+            <p>An autonomous page built entirely by a single, continuously refined prompt.</p>
+        </header>
+
+        <div class="section">
+            <h2>1. Text & Content Generation (LLMs)</h2>
+            <p>This is arguably the most common capability. Large Language Models (LLMs) like those behind this text can ingest vast amounts of data and generate human-like prose, summaries, translations, and creative writing.</p>
+            <p><strong>Mechanism:</strong> LLMs use a **Transformer** architecture to predict the next word in a sequence. They are trained on billions of parameters, allowing them to capture complex patterns in language and coherence across long-form content.</p>
+            <div class="code-box">
+                // Prompt: Write a 1-sentence sales pitch for a toaster that also tells the time.
+                <br>
+                // Output: "Start your day efficiently with the ChronoToast 5000, which not only perfectly crisps your bread but also ensures you're never late for your next meeting."
             </div>
         </div>
-        <div id="qualifications-page" class="page-container" style="display: flex;">
-            <div class="page-content" style="padding: 0; display: flex; flex-direction: column;">
-                
-                 <div class="back-link-container">
-    <a href="#" onclick="event.preventDefault(); showHomepage();" class="back-button">Back to Dashboard</a>
-</div>
+
+        <div class="section">
+            <h2>2. Image & Media Generation (Diffusion Models)</h2>
+            <p>GenAI excels at transforming textual descriptions into novel, high-resolution visual media. These tools can create realistic scenes, abstract art, and even 3D assets.</p>
+            <p><strong>Mechanism:</strong> **Diffusion Models** work by taking a chaotic noise image and iteratively "denoising" it based on the text prompt. This process gradually refines the image until it matches the descriptive cues provided by the user, achieving incredible photorealism.</p>
+            <p><em>(In a live demo, this is where a generated image of 'A cybernetic cat wearing a crown' would be displayed.)</em></p>
+        </div>
+
+        <div class="section">
+            <h2>3. Code Generation & Analysis</h2>
+            <p>GenAI serves as a powerful coding assistant, capable of generating functions, translating code between languages, debugging, and explaining complex algorithms. This capability significantly accelerates developer workflows.</p>
+            <p><strong>Mechanism:</strong> Specialized LLMs, often trained on massive public code repositories, learn the syntax, logic, and common patterns of programming languages. They treat code generation as a sophisticated form of **text prediction** where the 'next word' is the next logical line of code.</p>
+            <div class="code-box">
+                // Generated Python Function:
+                def is_prime(n):
+                    if n < 2:
+                        return False
+                    for i in range(2, int(n**0.5) + 1):
+                        if n % i == 0:
+                            return False
+                    return True
             </div>
         </div>
+
+        <!-- NEW AI ACKNOWLEDGEMENT NOTE -->
+        <div class="ai-acknowledgement">
+            <p>
+                <strong>🤖 AI Generation Note:</strong> This entire page (including its internal CSS styling, structure, and text content) was created using various Large Language Models (LLMs), primarily **Gemini** and **ChatGPT**. The content you see is a demonstration of their text-to-code generation capabilities, with only minimal human refinement.
+            </p>
+        </div>
+        <!-- END NEW AI ACKNOWLEDGEMENT NOTE -->
+
+        <div class="prompt-container">
+            <label for="final-prompt-box">Final Generation Prompt:</label>
+            <textarea id="final-prompt-box" readonly>Create a single-page HTML document about the capabilities of Generative AI. The page must use only inline CSS and one internal <style> block for all styling. Structure it with a header, three main sections (text generation, image generation, code generation), and a footer. Use a modern, dark color scheme. Refine the HTML page. Ensure the text is highly informative, explaining concepts like LLMs and diffusion models simply. Add a prominent, styled <textarea> element in the footer containing the full final prompt used to generate this page, labeled 'Final Generation Prompt:'. Make the page layout fully responsive. Final version: Add a vibrant, contrasting color (like neon green) to section titles for pop. Ensure the main header has a strong, professional title. Integrate a subtle background gradient into the body for depth. Add a 'Back to Dashboard' link/button.</textarea>
+        </div>
+        
+        <a href="#" onclick="alert('This would link back to your index page via a showDesktop() or similar function in a real application.');" class="back-button">
+            Back to Dashboard
+        </a>
     </div>
-    <script src="script.js"></script>
+
+    <footer>
+        <p>© 2025 Paola Avila. Page content created autonomously by Generative AI.</p>
+    </footer>
 </body>
 </html>

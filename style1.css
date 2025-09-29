@@ -895,9 +895,7 @@ body {
     min-height: 1em; 
 }
 
-/* ======================================= */
-/* --- New CSS for About Me Content --- */
-/* ======================================= */
+
 
 /* --- Food Spotlight Cards --- */
 .food-spotlight-card {
@@ -997,3 +995,4 @@ body {
         margin: 2rem auto;
     }
 }
+
