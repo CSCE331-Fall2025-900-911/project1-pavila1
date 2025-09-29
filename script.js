@@ -42,6 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
       ? "https://i.pinimg.com/736x/9a/e2/86/9ae286aa11281a83fbda0e8dc3324c98.jpg" // Style 1
       : "https://i.pinimg.com/736x/87/6d/14/876d140cd60b2fdc68dc3d4f51c8b1fa.jpg"; // Style 2
   }
+  const genaiIcon = document.getElementById("genai-icon");
+  if (genaiIcon) {
+    genaiIcon.src = isStyle1
+      ? "https://i.pinimg.com/736x/63/32/27/633227365ff79e5f63e1a5c56133f7e0.jpg" // Style 1
+      : "https://i.pinimg.com/736x/3d/a1/4c/3da14cd64a005d4c4536bb68c556df98.jpg"; // Style 2
+  }
+    const mailIcon = document.getElementById("mail-icon");
+  if (mailIcon) {
+    mailIcon.src = isStyle1
+      ? "https://i.pinimg.com/736x/34/1c/69/341c692fb4fad9c46274f2adf1e06b51.jpg" // Style 1
+      : "https://i.pinimg.com/736x/81/42/6c/81426c950b50f514d1a1148736600268.jpg"; // Style 2
+  }
 }
   
 

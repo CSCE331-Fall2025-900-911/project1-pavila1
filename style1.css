@@ -96,7 +96,7 @@ body {
 }
 
 .icon-box {
-    width: 100px;   /*  keeps them square and not stretched */
+    width: 125px;   /*  keeps them square and not stretched */
     height: 100px;
     padding: 1rem;
     border-radius: 0.75rem;
@@ -679,4 +679,34 @@ body {
   font-weight: bold;
   color: rgb(22, 104, 255);
   text-align: center;
+}
+.genai-icon-img {
+  width: 50%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 10px; /* optional rounded corners */
+  border: 2px solid white; /* optional */
+}
+.genai-label {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;          /* slightly larger font */
+  font-weight: bold;
+  color: rgba(0, 96, 175, 0.979); /* blue color */                                
+    text-align: center;
+}
+.mail-icon-img {
+  width: 50%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 10px; /* optional rounded corners */
+  border: 2px solid white; /* optional */
+}
+.mail-label {
+  display: block;
+  margin-top: 8px;                  
+    font-size: 14px;          /* slightly larger font */
+    font-weight: bold;
+    color: rgb(0, 89, 255); /* black color */
+    text-align: center;
 }
